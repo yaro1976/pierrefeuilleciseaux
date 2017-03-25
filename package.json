@@ -1,0 +1,42 @@
+{
+  "name": "mutilplayer_game",
+  "version": "1.0.0",
+  "description": "Multiplayer game nodeJS application",
+  "repository": "git@bitbucket.org:Yaro76/multi.git",
+  "main": "src/server/server.js",
+  "scripts": {
+    "start": "node src/server/server.js",
+    "test": "jasmine",
+    "cover": "nyc jasmine",
+    "postinstall": "bower install",
+    "doc": "jsdoc -c ./jsdoc.conf.json"
+  },
+  "author": "Thierry Aronoff",
+  "license": "ISC",
+  "dependencies": {
+    "bower": "^1.8.0",
+    "debug-log": "^1.0.1",
+    "express": "^4.15.2",
+    "mongojs": "^2.4.0",
+    "path": "^0.12.7",
+    "pug": "^2.0.0-beta11",
+    "socket.io": "^1.7.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-eslint": "^7.2.0",
+    "bundle": "^0.2.3",
+    "eslint": "^3.18.0",
+    "eslint-config-google": "^0.7.1",
+    "gulp": "^3.9.1",
+    "gulp-jsdoc3": "^1.0.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-nodemon": "^2.1.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sass": "^3.1.0",
+    "jasmine": "^2.5.3",
+    "jshint": "^2.9.4",
+    "nyc": "^10.1.2",
+    "sass-lint": "^1.10.2"
+  }
+}

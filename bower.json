@@ -1,0 +1,22 @@
+{
+  "name": "mutilplayer_game",
+  "description": "Multiplayer game nodeJS application",
+  "main": "src/server/app.js",
+  "authors": [
+    "Thierry Aronoff"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/public/js/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "socket.io-client": "^1.7.2"
+  }
+}
