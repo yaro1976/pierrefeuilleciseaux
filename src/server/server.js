@@ -2,7 +2,7 @@
  * @Author: Thierry Aronoff
  * @Date: 2017-03-24 18:58:12
  * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-03-25 22:24:37
+ * @Last Modified time: 2017-03-26 12:05:03
  */
 
 'use strict';
@@ -35,6 +35,17 @@ app.use(express.static(path.join(__dirname, '..', '/public')));
 app.use('/', index);
 
 // Ecoute du port
-http.listen(PORT, function () {
+http.listen(PORT, function() {
   console.log('listening on ' + PORT);
+});
+
+
+io.sockets.on('connection', function(socket) {
+  console.log('Socket connected...');
+
+  socket.on('send message', function(data) {
+    io.sockets.emit('new message', {
+      msg: data,
+    });
+  });
 });

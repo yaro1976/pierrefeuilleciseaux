@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Pong</title>
+  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles/style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div id="loginZone">
+      <h1>Jeu du chifoumi</h1>
+      <p>(pierre/papier/ciseaux)</p>
+      <h2>Connectez-vous pour jouer :</h2>
+      <form id="usernameForm">
+        <input type="text" id="username" name="pseudo" placeholder="Pseudo" required="requis" />
+        <input type="password" name="paswd" placeholder="Mot de passe" required="requis" />
+        <input type="submit" id="btn" class="btn btn-primary btn-block btn-large" value="Valider">
+      </form>
+    </div>
+    <div id="chatBoxZone">
+      <h2>Salon de discussion</h2>
+      <div id="chatWrapper">
+        <div id="chatBoxWindow"></div>
+        <form id="messageForm">
+          <input type="text" id="message" name="inputChatZone" placeholder="Taper du texte ici" />
+          <input type="submit" value="Envoyer" id="send" class="btn btn-primary btn-block btn-large">
+        </form>
+      </div>
+      <div id="userWrapper">
+        <div id="users"></div>
+      </div>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+
+
+  <!--<script src="./assets/js/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="./assets/js/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="./assets/js/vendor/socket.io-client/dist/socket.io.min.js">-->
+  </script>
+  <script src="./assets/js/app.js"></script>
+</body>
+
+</html>
