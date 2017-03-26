@@ -1,8 +1,8 @@
 /*
  * @Author: Thierry Aronoff
  * @Date: 2017-03-24 18:58:12
- * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-03-26 12:18:27
+ * @Last Modified by:   ka
+ * @Last Modified time: 2017-03-26 17:44:00
  */
 
 'use strict';
@@ -13,13 +13,18 @@
 
 // Creation du serveur
 let express = require('express');
-let app = express();
+const mongoose = require('mongoose');
+const app = express();
+
 // Ajout du module `http`
 let http = require('http').Server(app);
+
 // Chargement du module `socket.io`
 let io = require('socket.io')(http);
+
 // Activation du module path
 let path = require('path');
+
 // Activation du module body parser
 let bodyParser = require('body-parser');
 
@@ -32,7 +37,17 @@ let index = require('./routes/index');
 // Emplacement des fichiers statiques (css, js, images)
 app.use(express.static(path.join(__dirname, '..', '/public')));
 
+// Connexion à la base de données mongodb
+mongoose.connect('mongodb://192.168.0.104/dbchifoumi');
+
+// replace mongoose.Promise depreciated
+mongoose.Promise = global.Promise;
+
+app.use(bodyParser.json());
+
 app.use('/', index);
+
+//
 
 // Ecoute du port
 http.listen(PORT, function() {

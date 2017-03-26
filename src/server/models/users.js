@@ -2,15 +2,13 @@
 * @Author: ka
 * @Date:   2017-03-26 16:18:25
 * @Last Modified by:   ka
-* @Last Modified time: 2017-03-26 16:43:23
+* @Last Modified time: 2017-03-26 18:19:02
 */
 
 'use strict';
 
 const mongoose = require('mongoose');
 
-// Connexion à la base de données mongodb
-mongoose.connect('mongo://192.168.0.104/dbchifoumi')
 
 const Schema = mongoose.Schema;
 
@@ -32,6 +30,6 @@ const userSchema = new Schema({
 });
 
 // Creation du model pour users
-/const User = mongoose.model('user', userSchema);
+const User = mongoose.model('user', userSchema);
 
-module.exports = Users
+module.exports = User
