@@ -11,7 +11,7 @@ const sass = require('gulp-sass');
 let jsdoc = require('gulp-jsdoc3');
 
 gulp.task('sass', function() {
-    gulp.src('./src/public/assets/styles/*.scss')
+    gulp.src('./src/public/assets/styles/sass/*.scss')
         .pipe(sass())
         .pipe(gulp.dest('./src/public/assets/styles/'))
         .pipe(liveload());
@@ -24,19 +24,10 @@ gulp.task('js', function() {
 });
 
 gulp.task('watch', function() {
-    gulp.watch('./src/public/assets/styles/*.scss', ['sass']);
-});
-
-gulp.task('watch', function() {
-    gulp.watch('./src/public/assets/js/*.js', ['js']);
-});
-
-gulp.task('watch', function() {
+    gulp.watch('./src/public/**/*.scss', ['sass']);
+    gulp.watch('./src/public/**/*.js', ['js']);
     gulp.watch('./src/**/*.js', ['js']);
-});
-
-gulp.task('watch', function() {
-    gulp.watch('./src/**/*.js', ['jsdoc']);
+    gulp.watch('**/src/**/*.js', ['jsdoc']);
 });
 
 gulp.task('develop', function() {
@@ -58,7 +49,7 @@ gulp.task('develop', function() {
 
 gulp.task('jsdoc', function(cb) {
     let config = require('./jsdoc.json');
-    gulp.src(['README.md', './src/public/assets/**/*.js', './src/server/**/*.js'], {
+    gulp.src(['./README.md', './src/public/assets/**/*.js', './src/server/**/*.js'], {
             read: false,
         })
         .pipe(jsdoc(config, cb));
