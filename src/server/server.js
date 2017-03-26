@@ -2,11 +2,7 @@
  * @Author: Thierry Aronoff
  * @Date: 2017-03-24 18:58:12
  * @Last Modified by: Thierry Aronoff
-<<<<<<< HEAD
- * @Last Modified time: 2017-03-26 01:19:11
-=======
- * @Last Modified time: 2017-03-26 12:12:48
->>>>>>> ka
+ * @Last Modified time: 2017-03-26 12:18:27
  */
 
 'use strict';
@@ -43,9 +39,19 @@ http.listen(PORT, function() {
   console.log('listening on ' + PORT);
 });
 
+// Detection de l'évenement de connection d'un joueur
 io.sockets.on('connection', function(socket) {
-  console.log('Socket connected...');
+  console.log('------------------------------------');
+  console.log('Joueur ' + socket.id + ' connecté...');
+  console.log('------------------------------------');
 
+  // Detection de l'évenement de déconnection d'un joueur
+  socket.on('disconnect', function() {
+    console.log('------------------------------------');
+    console.log('Joueur ' + socket.id + ' déconnecté...');
+    console.log('------------------------------------');
+  });
+  // Detection de l'évènement d'un nouveau message posté
   socket.on('send message', function(data) {
     io.sockets.emit('new message', {
       msg: data,
