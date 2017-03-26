@@ -2,7 +2,11 @@
  * @Author: Thierry Aronoff
  * @Date: 2017-03-24 18:58:12
  * @Last Modified by: Thierry Aronoff
+<<<<<<< HEAD
  * @Last Modified time: 2017-03-26 01:19:11
+=======
+ * @Last Modified time: 2017-03-26 12:12:48
+>>>>>>> ka
  */
 
 'use strict';
@@ -39,38 +43,12 @@ http.listen(PORT, function() {
   console.log('listening on ' + PORT);
 });
 
-// Liste des messages
-let listMessages = [];
+io.sockets.on('connection', function(socket) {
+  console.log('Socket connected...');
 
-// Liste des joueurs
-let listJoueur = {};
-
-// Interception de l'évennement de connexion du joueur
-io.on('connection', function(socket) {
-  console.log('------------------------------------');
-  console.log('Joueur connecté ' + socket.id);
-  console.log('------------------------------------');
-  listJoueur[socket.id] = socket;
-  // ajout de la socket dans un salon
-  socket.join('test');
-  io.to('test').emit('connecte', socket.id);
-
-  socket.on('nouveau message', function(data) {
-    listMessages.push({
-      'joueur': socket.id,
-      'message': data.message,
+  socket.on('send message', function(data) {
+    io.sockets.emit('new message', {
+      msg: data,
     });
-    // socket.broadcast.to('test').emit('liste messages', listMessages);
-    io.to('test').emit('liste messages', listMessages);
-    console.log('------------------------------------');
-    console.log(listMessages);
-    console.log('------------------------------------');
-  });
-
-  // Interception de l'évennement de déconnexion du joueur
-  socket.on('disconnect', function() {
-    console.log('------------------------------------');
-    console.log('Joueur déconnecté ' + socket.id);
-    console.log('------------------------------------');
   });
 });
