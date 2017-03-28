@@ -11,6 +11,7 @@ const sass = require('gulp-sass');
 let jsdoc = require('gulp-jsdoc3');
 
 gulp.task('sass', function() {
+    console.log('Compilation des fichiers SASS');
     gulp.src('./src/public/assets/styles/sass/*.scss')
         .pipe(sass())
         .pipe(gulp.dest('./src/public/assets/styles/'))
@@ -18,6 +19,7 @@ gulp.task('sass', function() {
 });
 
 gulp.task('js', function() {
+    console.log('Traitement des fichiers Javascript');
     gulp.src('./src/public/js/client.js')
         .pipe(gulp.dest('./src/public/js/dist'))
         .pipe(liveload());
@@ -30,7 +32,15 @@ gulp.task('watch', function() {
     gulp.watch('**/src/**/*.js', ['jsdoc']);
 });
 
+gulp.task('watch', function() {
+    gulp.watch('./src/public/**/*.scss', ['sass']);
+    gulp.watch('./src/public/**/*.js', ['js']);
+    gulp.watch('./src/**/*.js', ['js']);
+    gulp.watch('**/src/**/*.js', ['jsdoc']);
+});
+
 gulp.task('develop', function() {
+    console.log('Lancement du serveur Web');
     liveload.listen();
     nodemon({
         script: 'src/server/server.js',
@@ -48,6 +58,7 @@ gulp.task('develop', function() {
 });
 
 gulp.task('jsdoc', function(cb) {
+    console.log('Génération de la documentation');
     let config = require('./jsdoc.json');
     gulp.src(['./README.md', './src/public/assets/**/*.js', './src/server/**/*.js'], {
             read: false,

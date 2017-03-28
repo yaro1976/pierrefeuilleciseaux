@@ -1,8 +1,8 @@
 /*
  * @Author: Thierry Aronoff
  * @Date: 2017-03-24 18:58:12
- * @Last Modified by:   ka
- * @Last Modified time: 2017-03-26 17:44:00
+ * @Last Modified by: Thierry Aronoff
+ * @Last Modified time: 2017-03-28 22:24:30
  */
 
 'use strict';
@@ -15,6 +15,9 @@
 let express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+
+// Fichier de configuration de l'application
+let config = require('./core/config');
 
 // Ajout du module `http`
 let http = require('http').Server(app);
@@ -38,10 +41,12 @@ let index = require('./routes/index');
 app.use(express.static(path.join(__dirname, '..', '/public')));
 
 // Connexion à la base de données mongodb
-mongoose.connect('mongodb://192.168.0.104/dbchifoumi');
+// mongoose.connect('mongodb://' + config.db.address + '/' + config.db.chifoumi);
 
 // replace mongoose.Promise depreciated
-mongoose.Promise = global.Promise;
+// mongoose.Promise = global.Promise;
+// Chargement des méthode d'accès à la db
+let db = require('./core/database');
 
 app.use(bodyParser.json());
 
@@ -71,5 +76,10 @@ io.sockets.on('connection', function(socket) {
     io.sockets.emit('new message', {
       msg: data,
     });
+  });
+
+  // Vérification de l'identifiant du mot de passe
+  socket.on('sign in', function(data, callback) {
+    db.checkUsername(data.username, callback);
   });
 });

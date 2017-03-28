@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Pong</title>
+  <title>Multi-player Chifoumi</title>
   <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles/style.css">
 </head>
@@ -15,11 +15,18 @@
       <h1>Jeu du chifoumi</h1>
       <p>(pierre/papier/ciseaux)</p>
       <h2>Connectez-vous pour jouer :</h2>
-      <form id="usernameForm">
+      <div id="usernameForm">
         <input type="text" id="username" name="pseudo" placeholder="Pseudo" required="requis" />
         <input type="password" name="paswd" placeholder="Mot de passe" required="requis" />
-        <input type="submit" id="btn" class="btn btn-primary btn-block btn-large" value="Valider">
-      </form>
+        <div class="row">
+          <div class="col-sm-6">
+            <input type="submit" id="btn-signIn" class="btn btn-primary btn-block btn-large " value="S'identifier">
+          </div>
+          <div class="col-sm-6">
+            <input type="submit" id="btn-signUp" class="btn btn-primary btn-block btn-large " value="S'enregistrer">
+          </div>
+        </div>
+      </div>
     </div>
     <div id="chatBoxZone">
       <h2>Salon de discussion</h2>
