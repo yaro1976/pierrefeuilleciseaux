@@ -2,7 +2,7 @@
  * @Author: Thierry Aronoff
  * @Date: 2017-03-28 21:45:38
  * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-03-29 22:45:41
+ * @Last Modified time: 2017-03-30 23:32:43
  */
 
 'use strict';
@@ -102,11 +102,10 @@ let db = {
 			'name': username,
 			'password': password,
 		}, function(err, data) {
-			if (err) throw err;
-			if (data.length >= 1) {
-				callback(true);
-			} else {
+			if (err) {
 				callback(false);
+			} else {
+				callback(true);
 			}
 		});
 	},

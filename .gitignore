@@ -12,3 +12,4 @@
 **/database/**
 **/dist/**
 !**/.bowerrc
+!**/.eslintrc.json
