@@ -25,16 +25,9 @@ gulp.task('js', function() {
         .pipe(liveload());
 });
 
-gulp.task('watch', function() {
-    gulp.watch('./src/public/**/*.scss', ['sass']);
-    gulp.watch('./src/public/**/*.js', ['js']);
-    gulp.watch('./src/**/*.js', ['js']);
-    gulp.watch('**/src/**/*.js', ['jsdoc']);
-});
-
-gulp.task('watch', function() {
-    gulp.watch('./src/public/**/*.scss', ['sass']);
-    gulp.watch('./src/public/**/*.js', ['js']);
+gulp.task('watch', function() {    
+    gulp.watch('./src/public/**/*.scss', ['sass']);   
+    gulp.watch('./src/public/**/*.js', ['js']);    
     gulp.watch('./src/**/*.js', ['js']);
     gulp.watch('**/src/**/*.js', ['jsdoc']);
 });

@@ -2,7 +2,7 @@
  * @Author: Thierry Aronoff
  * @Date: 2017-03-28 21:45:38
  * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-03-28 22:55:54
+ * @Last Modified time: 2017-03-29 22:45:41
  */
 
 'use strict';
@@ -37,43 +37,80 @@ const userSchema = new Schema({
 		type: Boolean,
 		default: false,
 	},
-
 });
 
 /**
  * @namespace db
  */
 let db = {
-		checkUsername: function(username, callback) {
-			// Creation du model pour users
-			const User = mongoose.model('user', userSchema);
-			User.find({
-				'name': username,
-			}, function(err, data) {
-				if (err) throw err;
-				if (data.length >= 1) {
-					callback(true);
-				} else {
-					callback(false);
-				}
-			});
-		},
-		checkValidity: function(username, password, callback) {
-			// Creation du model pour users
-			const User = mongoose.model('user', userSchema);
-			User.find({
-					'name': username,
-					'password': password,
-				}, function(err, data) {
-					if (err) throw err;
-					if (data.length >= 1) {
-						callback(true);
-					} else {
-						callback(false);
-					}
-				});
-			},
-		};
+	/**
+	 * @function checkUsername
+	 * @description Vérifie la disponibilité du pseudonyme entré
+	 * @param {string} username - Pseudonyme du nom du joueur
+	 * @param {function} callback - Function de callback
+	 */
+	checkUsername: function(username, callback) {
+		// Creation du model pour users
+		const User = mongoose.model('user', userSchema);
+		User.find({
+			'name': username,
+		}, function(err, data) {
+			if (err) throw err;
+			if (data.length >= 1) {
+				callback(true);
+			} else {
+				callback(false);
+			}
+		});
+	},
 
+	/**
+	 * @function checkUsername
+	 * @description Vérifie la validité du tuple {pseudonyme, mot de passe}
+	 * @param {string} username - Pseudonyme du nom du joueur
+	 * @param {string} password - Mot de passe associé au pseudonyme entré
+	 * @param {function} callback - Function de callback
+	 */
+	checkValidity: function(username, password, callback) {
+		// Creation du model pour users
+		const User = mongoose.model('user', userSchema);
+		User.find({
+			'name': username,
+			'password': password,
+		}, function(err, data) {
+			if (err) throw err;
+			if (data.length >= 1) {
+				callback(true);
+			} else {
+				callback(false);
+			}
+		});
+	},
+	/**
+	 * @function insertPlayer
+	 * @description Insert un nouveau joueur dans la base de données
+	 * @param {string} username - Pseudonyme du nom du joueur
+	 * @param {string} password - Mot de passe associé au pseudonyme entré
+	 * @param {function} callback - Function de callback
+	 */
+	insertPlayer: function(username, password, callback) {
+		// Creation du model pour users
+		const User = mongoose.model('user', userSchema);
+		// Creer un nouvel utilisateur
+		// var user = new User(username, password, true);
+		User.create({
+			'name': username,
+			'password': password,
+		}, function(err, data) {
+			if (err) throw err;
+			if (data.length >= 1) {
+				callback(true);
+			} else {
+				callback(false);
+			}
+		});
+	},
+};
 
-		module.exports = db;
+// Retourne l'objet Db
+module.exports = db;

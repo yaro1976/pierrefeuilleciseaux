@@ -2,7 +2,7 @@
  * @Author: Thierry Aronoff
  * @Date: 2017-03-24 22:07:16
  * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-03-27 21:03:36
+ * @Last Modified time: 2017-03-29 22:06:57
  */
 
 // Import des fichiers de style
@@ -13,4 +13,6 @@
 @import './_button';
 // Style de la page de chat
 @import './_chat';
+// Error Block
+@import './_message-block';
 // end

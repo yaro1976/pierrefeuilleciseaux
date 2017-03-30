@@ -71,6 +71,9 @@ io.sockets.on('connection', function(socket) {
     console.log('Joueur ' + socket.id + ' déconnecté...');
     console.log('------------------------------------');
   });
+
+  // Login part
+
   // Detection de l'évènement d'un nouveau message posté
   socket.on('send message', function(data) {
     io.sockets.emit('new message', {
@@ -80,6 +83,16 @@ io.sockets.on('connection', function(socket) {
 
   // Vérification de l'identifiant du mot de passe
   socket.on('sign in', function(data, callback) {
-    db.checkUsername(data.username, callback);
+    db.checkValidity(data.username, data.passwd, callback);
   });
+
+// Vérification de la disponibilité du pseudo
+  socket.on('check pseudo', function(data, callback) {
+      db.checkUsername(data.username, callback);
+    });
+
+// Création d'un nouveau compte
+  socket.on('creer compte', function(data, callback) {
+      db.insertPlayer(data.username, data.passwd, callback);
+    });  
 });

@@ -15,12 +15,14 @@
 module.exports = {
   'db': {
     'dbname': 'dbchifoumi',
-    'address': '192.168.0.104',
+    // 'address': '192.168.0.104',
+    'address': '127.0.0.1',
     'port': 27017,
     'user': '',
     'mdp': '',
   },
   'game': {
     'nbParties': 5,
+    "dureeManche": 10
   },
 };

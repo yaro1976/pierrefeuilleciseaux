@@ -17,7 +17,7 @@ body {
   height: 100%;
   background: url("../images/bg.jpg") no-repeat center fixed;
   background-size: cover;
-  color: #D1E5E1;
+  color: $edgewater;
 }
 
 h2 {
@@ -34,14 +34,14 @@ h2 {
 }
 
 .container h1 {
-  color: #fff;
+  color: $white;
   letter-spacing: 1px;
   text-align: center;
 }
 
 .container p {
   font-size: 18px;
-  color: #D1E5E1;
+  color: $edgewater;
   letter-spacing: 1px;
   text-align: center;
 }
@@ -54,7 +54,7 @@ input {
   outline: none;
   padding: 10px;
   font-size: 13px;
-  color: #fff;
+  color: $white;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 4px;
