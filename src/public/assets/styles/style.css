@@ -2,7 +2,7 @@
  * @Author: Thierry Aronoff
  * @Date: 2017-03-24 22:07:16
  * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-03-27 21:03:36
+ * @Last Modified time: 2017-03-29 22:06:57
  */
 * {
   -webkit-box-sizing: border-box;
@@ -83,14 +83,14 @@ input:focus {
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
   vertical-align: middle;
   background-color: #f5f5f5;
-  background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
-  background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
-  background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
-  background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
-  background-image: linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: -moz-linear-gradient(top, #fff, #e6e6e6);
+  background-image: -ms-linear-gradient(top, #fff, #e6e6e6);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(#e6e6e6));
+  background-image: -webkit-linear-gradient(top, #fff, #e6e6e6);
+  background-image: -o-linear-gradient(top, #fff, #e6e6e6);
+  background-image: linear-gradient(top, #fff, #e6e6e6);
   background-repeat: repeat-x;
-  filter: progid:dximagetransform.microsoft.gradient(startColorstr=#ffffff, endColorstr=#e6e6e6, GradientType=0);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr=$white, endColorstr=#e6e6e6, GradientType=0);
   border-color: #e6e6e6 #e6e6e6 #e6e6e6;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   border: 1px solid #e6e6e6;
@@ -132,7 +132,7 @@ input:focus {
 .btn-primary,
 .btn-primary:hover {
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  color: #ffffff; }
+  color: #fff; }
 
 .btn-primary.active {
   color: rgba(255, 255, 255, 0.75); }
@@ -163,6 +163,11 @@ input:focus {
   width: 100%;
   display: block; }
 
+.wrapper {
+  max-width: 50%;
+  margin-left: auto;
+  margin-right: auto; }
+
 /*
 * Chat
 */
@@ -173,3 +178,12 @@ input:focus {
   margin: -150px 0 0 -150px;
   width: 600px;
   height: 300px; }
+
+/*
+* Error Block
+*/
+.error-block {
+  display: none; }
+
+.information-block {
+  display: none; }
