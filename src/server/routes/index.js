@@ -17,11 +17,4 @@ router.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, '..', '..', 'public/index.html'));
 });
 
-// Formulaire d'inscription
-// router.post('/', function(req, res) {
-//   Users.create(req.body).then(function(user) {
-//   	res.send(user);
-//   });
-// });
-
 module.exports = router;
