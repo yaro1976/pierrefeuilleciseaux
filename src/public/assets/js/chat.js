@@ -30,8 +30,8 @@ let chat = (function($) {
      * Mise en forme du message posté
      * @param {string} msg - Message à mettre en forme
      */
-    formatMessage : function(msg) {
-      return '<p><strong>' + this.socket.username +'</strong> : ' + msg + '</p>';
+    formatMessage : function(msg, username) {
+      return '<p><strong>' + username +'</strong> : ' + msg + '</p>';
     },
 
     /**
@@ -58,7 +58,7 @@ let chat = (function($) {
       // Reception d'un nouveau message
       let self = this;
       this.socket.on('new message', function(data) {
-        self.$chat.append(self.formatMessage(data.msg));
+        self.$chat.append(self.formatMessage(data.msg, data.username));
       });
     },
 
