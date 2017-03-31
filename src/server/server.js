@@ -94,5 +94,9 @@ io.sockets.on('connection', function(socket) {
 // Création d'un nouveau compte
   socket.on('creer compte', function(data, callback) {
       db.insertPlayer(data.username, data.passwd, callback);
-    });  
+    });
+
+ socket.on('username', function(data) {
+    socket.username = data;
+  });
 });

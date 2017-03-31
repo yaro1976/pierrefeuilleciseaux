@@ -9,37 +9,16 @@
  * @module App.js
  * @description Script de gestion de la connexion
  */
-(function(login, $) {
+(function(login, chat, $) {
   $(function() {
     // Chargement du module socket.io
     let socket = io.connect();
 
+    // Gestion de l'enregistement de la page de login
     login.main(socket);
 
+    // Moteur de la partie du chat
+    chat.main(socket);
 
-    /**
-     * Traitement du chat
-     */
-    // Récupération des éléments du html
-
-    let $messageForm = $('#messageForm');
-    let $message = $('#message');
-    let $chat = $('#chatBoxWindow');
-
-    $messageForm.submit(function(e) {
-      e.preventDefault();
-      // Vérification qu'un message est bien saisi
-      let mesg = $message.val();
-
-      if (mesg.length !== 0) {
-        socket.emit('send message', mesg);
-      }
-      $message.val('');
-    });
-
-    // Reception d'un nouveau message
-    socket.on('new message', function(data) {
-      $chat.append(data.msg + '<br />');
-    });
   });
-})(login, jQuery);
+})(login, chat, jQuery);

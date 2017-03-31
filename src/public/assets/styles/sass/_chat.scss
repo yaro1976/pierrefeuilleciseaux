@@ -2,11 +2,19 @@
 * Chat
 */
 
-.inputChatBox {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: -150px 0 0 -150px;
-  width: 600px;
-  height: 300px;
+#chatBoxZone{
+  .inputChatBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -150px 0 0 -150px;
+    width: 600px;
+    height: 300px;
+  }
+  #chatBoxWindow {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 20vh;    
+  }
+
 }
