@@ -1,8 +1,8 @@
 /*
- * @Author: Thierry ARONOFF 
- * @Date: 2017-03-31 10:54:12 
- * @Last Modified by: Thierry ARONOFF
- * @Last Modified time: 2017-03-31 15:12:13
+ * @Author: Thierry ARONOFF
+ * @Date: 2017-03-31 10:54:12
+ * @Last Modified by: Thierry Aronoff
+ * @Last Modified time: 2017-04-01 01:05:04
  */
 
 'use strict';
@@ -15,15 +15,21 @@
 // Création d'une salle d'attente
 
 let RoomsGest = (function() {
-  let RoomsGest = function() {
-    this.rooms = {};
+  /**
+   * @class RoomsGest
+   * @description Gestion des rooms
+   * @param {object} io - Objet Socket.io
+   */
+  function RoomsGest(io) {
+    let RoomsGest = this;
+    RoomsGest.rooms = {};
+    RoomsGest.roomIndex = {};
   };
 
-  RoomsGest.prototype.playerConnection = function(player) {
-    rooms[player] = player;
-  };
-  return RoomsGest;
-})();
+  //
 
+  module.exports = RoomsGest;
+});
 
-module.exports= RoomsGest;
+// Export du module RoomsGest
+module.exports = RoomsGest;

@@ -1,16 +1,17 @@
 /*
  * @Author: Thierry Aronoff
  * @Date: 2017-03-28 21:45:38
- * @Last Modified by: Thierry ARONOFF
- * @Last Modified time: 2017-03-31 12:11:39
+ * @Last Modified by: Thierry Aronoff
+ * @Last Modified time: 2017-03-31 22:52:50
  */
 
 'use strict';
 /**
  * @module Db
+ * @description Functions liées à l'accès à la base de données
  */
 
-// Chargment des dépendances
+// Chargement des dépendances
 const config = require('../core/config');
 const mongoose = require('mongoose');
 
@@ -40,9 +41,10 @@ const userSchema = new Schema({
 });
 
 /**
- * @namespace db
+ * @class db
+ * @description Ensemble de méthodes d'accès à la base de données
  */
-let db = {
+let dbClass = {
 	/**
 	 * @function checkUsername
 	 * @description Vérifie la disponibilité du pseudonyme entré
@@ -112,4 +114,4 @@ let db = {
 };
 
 // Retourne l'objet Db
-module.exports = db;
+module.exports = dbClass;

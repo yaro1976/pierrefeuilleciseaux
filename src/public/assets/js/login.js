@@ -1,14 +1,15 @@
 /*
  * @Author: Thierry Aronoff
  * @Date: 2017-03-26 00:07:45
- * @Last Modified by: Thierry ARONOFF
- * @Last Modified time: 2017-03-31 12:13:32
+ * @Last Modified by: Thierry Aronoff
+ * @Last Modified time: 2017-04-01 01:03:24
  */
 'use strict';
 /**
- * @module App.js
+ * @module login
  * @description Script de gestion de la connexion
  */
+
 let login = (function($) {
   /**
    * @class Login
@@ -47,9 +48,10 @@ let login = (function($) {
 
           // Hide formulaire de login
           $('#loginZone').hide();
+          // Affiche la zone de jeu
+          self.afficheZoneJeu();
         } else {
           self.afficheErreur('L\'utilisateur n\'existe pas, ou le mot de passe est erroné');
-          // TODO: Redemander mot de passe le nom du joueur
         }
       });
     },
@@ -84,6 +86,12 @@ let login = (function($) {
                 $('#information-block').hide();
                 // Hide formulaire de login
                 $('#loginZone').hide();
+
+                // Affiche la zone de jeu
+                self.afficheZoneJeu();
+
+                // Sauvegarder le nom du joueur
+                self.socket.emit('username', self.userId.username);
               } else {
                 // Erreur lors de la création du compte
                 self.afficheErreur('Erreur lors de la création du compte');
@@ -181,8 +189,15 @@ let login = (function($) {
       $('#information-block').show();
     },
 
-    main: function(socket) {
+    /**
+     * @function main
+     * @description Fonction principale
+     * @param {object} socket - Objet Socket.io
+     * @param {object} gameZone - Zone de jeu
+     */
+    main: function(socket, gameZone) {
       this.socket = socket;
+      this.$jeu = gameZone;
       let self = this;
 
       this.init();
@@ -201,19 +216,34 @@ let login = (function($) {
       });
     },
 
+    /**
+     * @function render
+     * @description Met à jour le formulaire de login
+     */
     render: function() {
       if (this.modeLogin) {
         $('#passwd-verif').hide();
         $('#btn-signIn').val('S\'identifier');
       } else {
         $('#passwd-verif').show();
-        // $('#usernameForm').append('<input type="password" name="passwd-verif" id="passwd-verif" placeholder="Confirmez votre mot de passe" required="requis" />');
         $('#btn-signIn').val('Créer un compte');
       }
     },
 
+    /**
+     * @function cacheForm
+     * @description Cache le formulaire de login
+     */
     cacheForm: function() {
       $('#loginZone').hide();
+    },
+
+    /**
+     * @function afficheZoneJeu
+     * @description Cache la zone de jeu
+     */
+    afficheZoneJeu: function() {
+      this.$jeu.show();
     },
   };
 

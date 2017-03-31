@@ -2,7 +2,7 @@
  * @Author: Thierry Aronoff
  * @Date: 2017-03-24 22:07:16
  * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-03-29 22:06:57
+ * @Last Modified time: 2017-04-01 00:00:43
  */
 * {
   -webkit-box-sizing: border-box;
@@ -28,11 +28,7 @@ h2 {
 
 .container {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: -150px 0 0 -150px;
-  width: 500px;
-  height: 300px; }
+  top: 33%; }
 
 .container h1 {
   color: #fff;
@@ -167,6 +163,12 @@ input:focus {
   max-width: 50%;
   margin-left: auto;
   margin-right: auto; }
+
+/*
+* Zone de jeu
+*/
+#jeu {
+  display: none; }
 
 /*
 * Chat

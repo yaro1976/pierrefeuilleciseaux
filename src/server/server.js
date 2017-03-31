@@ -2,7 +2,7 @@
  * @Author: Thierry Aronoff
  * @Date: 2017-03-24 18:58:12
  * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-03-28 22:24:30
+ * @Last Modified time: 2017-04-01 01:05:36
  */
 
 'use strict';
@@ -13,7 +13,7 @@
 
 // Creation du serveur
 let express = require('express');
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 const app = express();
 
 // Fichier de configuration de l'application
@@ -40,36 +40,53 @@ let index = require('./routes/index');
 // Emplacement des fichiers statiques (css, js, images)
 app.use(express.static(path.join(__dirname, '..', '/public')));
 
-// Connexion à la base de données mongodb
-// mongoose.connect('mongodb://' + config.db.address + '/' + config.db.chifoumi);
-
-// replace mongoose.Promise depreciated
-// mongoose.Promise = global.Promise;
 // Chargement des méthode d'accès à la db
 let db = require('./core/database');
 
 app.use(bodyParser.json());
 
+// Association de la route `/` au fichier de configuration des routes
 app.use('/', index);
-
-//
 
 // Ecoute du port
 http.listen(PORT, function() {
   console.log('listening on ' + PORT);
 });
 
+//
+let RoomManagt = require('./core/roomGest');
+let roomManagt = new RoomManagt(io);
+
+// Chargement de la classe accueil
+let AccueilClass = require('./core/accueil');
+let accueil = new AccueilClass(io);
+
+
 // Detection de l'évenement de connection d'un joueur
 io.sockets.on('connection', function(socket) {
+  // Transfert du nouveau joueur connecté à un salon
+  io.to(socket.id).emit('connecte', 'Bienvenue');
+
+  socket.broadcast.emit('nouveau joueur');
+
   console.log('------------------------------------');
   console.log('Joueur ' + socket.id + ' connecté...');
   console.log('------------------------------------');
+  // Envoi du nombre de joueurs connectés
+  io.sockets.emit('compteur joueurs', socket.server.eio.clientsCount);
+
 
   // Detection de l'évenement de déconnection d'un joueur
   socket.on('disconnect', function() {
     console.log('------------------------------------');
     console.log('Joueur ' + socket.id + ' déconnecté...');
     console.log('------------------------------------');
+
+    // Envoi du nombre de joueurs connectés
+    io.sockets.emit('compteur joueurs', socket.server.eio.clientsCount);
+
+    // Suppression du joueur de la salle d'attente
+    accueil.kick(socket);
   });
 
   // Login part
@@ -78,7 +95,7 @@ io.sockets.on('connection', function(socket) {
   socket.on('send message', function(data) {
     io.sockets.emit('new message', {
       msg: data,
-      username: socket.username
+      username: socket.username,
     });
   });
 
@@ -87,17 +104,24 @@ io.sockets.on('connection', function(socket) {
     db.checkValidity(data.username, data.passwd, callback);
   });
 
-// Vérification de la disponibilité du pseudo
+  // Vérification de la disponibilité du pseudo
   socket.on('check pseudo', function(data, callback) {
-      db.checkUsername(data.username, callback);
-    });
+    db.checkUsername(data.username, callback);
+  });
 
-// Création d'un nouveau compte
+  // Création d'un nouveau compte
   socket.on('creer compte', function(data, callback) {
-      db.insertPlayer(data.username, data.passwd, callback);
-    });
+    db.insertPlayer(data.username, data.passwd, callback);
+  });
 
- socket.on('username', function(data) {
+  socket.on('username', function(data) {
     socket.username = data;
+  });
+
+  // Mise en attente des joueurs
+  socket.on('attente', function() {
+    // Ajout du joueur dans une salle d'attente
+    accueil.push(socket);
+    accueil.dispatch(roomManagt);
   });
 });

@@ -1,19 +1,24 @@
 /*
  * @Author: Thierry ARONOFF
  * @Date: 2017-03-31 15:13:15
- * @Last Modified by: Thierry ARONOFF
- * @Last Modified time: 2017-03-31 15:24:26
+ * @Last Modified by: Thierry Aronoff
+ * @Last Modified time: 2017-03-31 23:51:48
  */
-
+'use strict';
 /**
  * @module Chat
+ * @description Functions liées au module chat
  */
 
 let chat = (function($) {
+  /**
+   * @class chat
+   * @description Gestion du chat
+   */
   let chat = {
-
     /**
-     * Initialize la class Chat
+     * @function init
+     * @description Initialize la class Chat
      */
     init: function() {
       /**
@@ -27,15 +32,17 @@ let chat = (function($) {
     },
 
     /**
-     * Mise en forme du message posté
+     * @function formatMessage
+     * @description Mise en forme du message posté
      * @param {string} msg - Message à mettre en forme
      */
-    formatMessage : function(msg, username) {
-      return '<p><strong>' + username +'</strong> : ' + msg + '</p>';
+    formatMessage: function(msg, username) {
+      return '<p><strong>' + username + '</strong> : ' + msg + '</p>';
     },
 
     /**
-     * Gere l'envoi du message vers le serveur
+     * @function sendMessage
+     * @description Gere l'envoi du message vers le serveur
      */
     sendMessage: function() {
       let self = this;
@@ -52,19 +59,32 @@ let chat = (function($) {
     },
 
     /**
-     * Receptionne les messages à partir du serveur
+     * @function ecrire
+     * @description Ecrit le message dans la zone de chat
+     * @param {string} msg - Message à écrire
+     * @param {string} user - Auteur du message
+     */
+    ecrire: function(msg, user) {
+      this.$chat.append(this.formatMessage(msg, user));
+    },
+
+    /**
+     * @function receptMessage
+     * @description Receptionne les messages à partir du serveur
      */
     receptMessage: function() {
       // Reception d'un nouveau message
       let self = this;
       this.socket.on('new message', function(data) {
-        self.$chat.append(self.formatMessage(data.msg, data.username));
+        self.ecrire(data.msg, data.username);
+        // self.$chat.append(self.formatMessage(data.msg, data.username));
       });
     },
 
     /**
-     * Fonction principale de la classe Chat
-     * @param {object} socket - Socket du client 
+     * @function main
+     * @description Fonction principale de la classe Chat
+     * @param {object} socket - Socket du client
      */
     main: function(socket) {
       this.socket = socket;
@@ -72,9 +92,8 @@ let chat = (function($) {
       this.init();
       this.receptMessage();
       this.sendMessage();
-    }    
+    },
   };
 
   return chat;
-
-}) (jQuery);
+})(jQuery);
