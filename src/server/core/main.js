@@ -1,44 +1,40 @@
 /*
-* @Author: ka
-* @Date:   2017-03-26 12:31:01
-* @Last Modified by:   ka
-* @Last Modified time: 2017-03-26 19:35:45
-*/
+ * @Author: Thierry Aronoff
+ * @Date: 2017-03-28 21:16:34
+ * @Last Modified by: Thierry Aronoff
+ * @Last Modified time: 2017-03-28 21:17:01
+ */
 
 'use strict';
 
 // Le jeu du Chifoumi
 
 // Variables html -> js
-var result = document.getElementById('result');
-var score = document.getElementById('score');
+let result = document.getElementById('result');
+let score = document.getElementById('score');
 
 // Tableau des items
-var responses = ['pierre', 'papier', 'ciseaux'];
+let responses = ['pierre', 'papier', 'ciseaux'];
 
 // Réponses aléatoires de l'IA
-var player2Choice = responses[Math.floor(Math.random() * responses.length)];
+let player2Choice = responses[Math.floor(Math.random() * responses.length)];
 console.log(iaChoice);
 
 // Réponse du joueur
-var player1Choice = argv(3, 'choisis pierre, feuille ou ciseaux')
+let player1Choice = argv(3, 'choisis pierre, feuille ou ciseaux');
 
 // Résolution des choix des joueurs
-if(playerChoice === iaChoice) {
+if (playerChoice === iaChoice) {
 	result.innerHTML = 'Egalité';
-
-} else if(playerChoice === 'papier' && iaChoice === 'pierre') {
+} else if (playerChoice === 'papier' && iaChoice === 'pierre') {
 	result.innerHTML = 'player gagne cette partie !';
-
-} else if(playerChoice === ciseaux && iaChoice === papier) {
+} else if (playerChoice === ciseaux && iaChoice === papier) {
 	result.innerHTML = 'player gagne cette partie !';
-
-} else if(playerChoice === pierre && iaChoice === ciseaux) {
+} else if (playerChoice === pierre && iaChoice === ciseaux) {
 	result.innerHTML = 'player gagne cette partie !';
-
 } else {
 	result.innerHTML = 'L\'IA gagne cette partie';
 }
 
 // Une manche  est composé de 3 parties
-if(score.player)
+if (score.player) {}
