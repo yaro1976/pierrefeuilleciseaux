@@ -1,8 +1,8 @@
 /*
  * @Author: Thierry Aronoff
  * @Date: 2017-03-24 19:16:39
- * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-03-28 22:08:30
+ * @Last Modified by: Thierry ARONOFF
+ * @Last Modified time: 2017-03-31 12:11:09
  */
 
 /** @module routes */
@@ -16,12 +16,5 @@ const router = express.Router();
 router.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, '..', '..', 'public/index.html'));
 });
-
-// Formulaire d'inscription
-// router.post('/', function(req, res) {
-//   Users.create(req.body).then(function(user) {
-//   	res.send(user);
-//   });
-// });
 
 module.exports = router;

@@ -1,17 +1,16 @@
 /*
  * @Author: Thierry Aronoff
  * @Date: 2017-03-26 00:07:45
- * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-03-29 22:47:15
+ * @Last Modified by: Thierry ARONOFF
+ * @Last Modified time: 2017-03-31 12:14:11
  */
 'use strict';
 /**
  * @module App.js
  * @description Script de gestion de la connexion
  */
-(function (login, $) {
-  $(function () {
-
+(function(login, $) {
+  $(function() {
     // Chargement du module socket.io
     let socket = io.connect();
 
@@ -27,8 +26,7 @@
     let $message = $('#message');
     let $chat = $('#chatBoxWindow');
 
-
-    $messageForm.submit(function (e) {
+    $messageForm.submit(function(e) {
       e.preventDefault();
       // Vérification qu'un message est bien saisi
       let mesg = $message.val();
@@ -40,7 +38,7 @@
     });
 
     // Reception d'un nouveau message
-    socket.on('new message', function (data) {
+    socket.on('new message', function(data) {
       $chat.append(data.msg + '<br />');
     });
   });
