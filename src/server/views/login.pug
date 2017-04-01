@@ -1,0 +1,44 @@
+// loginZone
+#loginZone.col-sm-6.col-xs-6.col-sm-offset-6.col-xs-offset-6
+  h1 Jeu du chifoumi
+  |
+  p (pierre/papier/ciseaux)
+  |
+  h2 Connectez-vous pour jouer :
+  // Message d'alerte
+  #error-block.alert.alert-danger.error-block(role='alert')
+    span.glyphicon.glyphicon-exclamation-sign(aria-hidden='true')
+    |
+    span#error-block-Message.sr-only Error:
+    |  Enter a valid email address
+  // Fin message d'alerte
+  // Message d'information
+  #error-block.alert.alert-success.information-block(role='alert')
+    span.glyphicon.glyphicon-exclamation-sign(aria-hidden='true')
+    |
+    span#information-block-Message.sr-only Error:
+    |  Enter a valid email address
+  // Fin message d'information
+  #row
+    #btn-group
+      button#btn-Identifier.col-sm-6.col-xs-6.btn.btn-primary.btn-large.wrapper S&apos;identifier
+      |
+      button#btn-creerCompte.col-sm-6.col-xs-6.btn.btn-large.wrapper.btn-primary--unselected Cr&eacute;er un compte
+  // Formulaire d'identification
+  form#usernameForm
+    input#username(type='text', name='pseudo', placeholder='Pseudo', required='')
+    |
+    input#passwd(type='password', name='passwd', placeholder='Mot de passe', required='')
+    |
+    input#passwd-verif(type='password', name='passwd-verif', placeholder='Confirmez votre mot de passe')
+    |
+    .row
+      .col-sm-12
+        input#btn-signIn.btn.btn-primary.btn-block.btn-large(type='submit', value="S'identifier")
+  // Formulaire d'identification
+
+  // Affichage du nombre de joueurs
+  #nbjoueurs.text-center
+  // Affichage du nombre de joueurs
+
+  // loginZone

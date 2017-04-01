@@ -2,7 +2,7 @@
  * @Author: Thierry Aronoff
  * @Date: 2017-03-24 18:58:12
  * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-04-01 01:05:36
+ * @Last Modified time: 2017-04-01 18:05:54
  */
 
 'use strict';
@@ -31,6 +31,9 @@ let path = require('path');
 // Activation du module body parser
 let bodyParser = require('body-parser');
 
+// Chargement du module pug
+const pug = require('pug');
+
 // Définition du port d'écoute
 const PORT = process.env.port || 3000;
 
@@ -39,6 +42,9 @@ let index = require('./routes/index');
 
 // Emplacement des fichiers statiques (css, js, images)
 app.use(express.static(path.join(__dirname, '..', '/public')));
+
+// Activation de pug
+app.set('view engine', 'pug');
 
 // Chargement des méthode d'accès à la db
 let db = require('./core/database');
@@ -64,9 +70,6 @@ let accueil = new AccueilClass(io);
 
 // Detection de l'évenement de connection d'un joueur
 io.sockets.on('connection', function(socket) {
-  // Transfert du nouveau joueur connecté à un salon
-  io.to(socket.id).emit('connecte', 'Bienvenue');
-
   socket.broadcast.emit('nouveau joueur');
 
   console.log('------------------------------------');
@@ -114,14 +117,31 @@ io.sockets.on('connection', function(socket) {
     db.insertPlayer(data.username, data.passwd, callback);
   });
 
+  // Si l'identification s'est bien effectué,
+  // On récupère le nom du joueur
   socket.on('username', function(data) {
     socket.username = data;
+    // On salue le nouveau joueur
+
+    // Transfert du nouveau joueur connecté à un salon
+    io.to(socket.id).emit('connecte', {
+      'msg': 'Bienvenue',
+      'username': socket.username,
+    });
   });
 
   // Mise en attente des joueurs
   socket.on('attente', function() {
     // Ajout du joueur dans une salle d'attente
     accueil.push(socket);
-    accueil.dispatch(roomManagt);
+    // accueil.dispatch(roomManagt);
+  });
+
+  io.to(socket.id).emit('jeu', {
+    'yourScore': 1,
+    'hisScore': 3,
+    'tempsRestant': '3:15',
+    'tempsTotal': '4:00',
+    'manches': 1,
   });
 });

@@ -2,19 +2,32 @@
 * Chat
 */
 
-#chatBoxZone{
-  .inputChatBox {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: -150px 0 0 -150px;
-    width: 600px;
-    height: 300px;
-  }
+#chatBoxZone {
+  // .inputChatBox {
+  //   position: absolute;
+  //   top: 50%;
+  //   left: 50%;
+  //   margin: -150px 0 0 -150px;
+  //   width: 600px;
+  //   height: 300px;
+  // }
+  border: 1px solid $mercury;
+  border-radius: 5px;
+  padding: 5px;
   #chatBoxWindow {
     overflow-y: auto;
     overflow-x: hidden;
-    height: 20vh;    
+    height: 20vh;
+    border: 1px solid $mercury;
+    border-radius: 5px;
   }
-
+  h2 {
+    // border: 1px solid $mercury;
+    // border-radius: 5px;
+    text-align: center;
+  }
+  .messageForm {
+    border: 1px solid $mercury;
+    border-radius: 5px;
+  }
 }

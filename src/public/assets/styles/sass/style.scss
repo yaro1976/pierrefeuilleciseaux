@@ -2,7 +2,7 @@
  * @Author: Thierry Aronoff
  * @Date: 2017-03-24 22:07:16
  * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-04-01 00:00:43
+ * @Last Modified time: 2017-04-01 16:16:30
  */
 
 // Import des fichiers de style
@@ -11,7 +11,9 @@
 @import './_login';
 // Boutons
 @import './_button';
-// Style de la page de chat
+// Import des fichiers de sprite
+@import './_sprite.scss';
+// Style de la page de jeu
 @import './_game';
 // Style de la page de chat
 @import './_chat';

@@ -2,7 +2,7 @@
  * @Author: Thierry ARONOFF
  * @Date: 2017-03-31 15:13:15
  * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-03-31 23:51:48
+ * @Last Modified time: 2017-04-01 17:55:00
  */
 'use strict';
 /**
@@ -35,6 +35,8 @@ let chat = (function($) {
      * @function formatMessage
      * @description Mise en forme du message posté
      * @param {string} msg - Message à mettre en forme
+     * @param {string} username - Auteur du message
+     * @return {string} Message mis en forme
      */
     formatMessage: function(msg, username) {
       return '<p><strong>' + username + '</strong> : ' + msg + '</p>';

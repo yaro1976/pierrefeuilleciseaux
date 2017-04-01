@@ -1,0 +1,23 @@
+.sprite {
+    background-image: url('../images/spritesheet.png');
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.sprite-ciseaux {
+    width: 82px;
+    height: 83px;
+    background-position: -5px -5px;
+}
+
+.sprite-feuille {
+    width: 82px;
+    height: 83px;
+    background-position: -97px -5px;
+}
+
+.sprite-pierre {
+    width: 82px;
+    height: 82px;
+    background-position: -5px -98px;
+}

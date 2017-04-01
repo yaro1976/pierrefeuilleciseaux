@@ -1,0 +1,33 @@
+.game
+  // Zone de jeu
+  .row
+    #jeu.col-sm-4.col-xs-4.col-sm-offset-4.col-xs-offset-4
+      #jeu_informations
+      |
+      #jeu_zone.text-center
+        .col-md-4.col-xs-4
+          a.sprite.sprite-ciseaux(href='#Ciseaux')
+        |
+        .col-md-4.col-xs-4
+          a.sprite.sprite-feuille(href='#Feuille')
+        |
+        .col-md-4.col-xs-4
+          a.sprite.sprite-pierre(href='#Pierre')
+  // Fin de Zone de jeu
+  // Chat
+  .row
+    #chatBoxZone.col-sm-4.col-xs-4
+      h2 Salon de discussion
+      |
+      #chatWrapper
+        #chatBoxWindow
+        |
+        form#messageForm
+          input#message(type='text', name='inputChatZone', placeholder='Taper du texte ici')
+          |
+          input#send.btn.btn-primary.btn-block.btn-large(type='submit', value='Envoyer')
+      |
+      #userWrapper
+        #users
+  // Fin Chat
+

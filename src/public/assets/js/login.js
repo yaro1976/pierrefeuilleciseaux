@@ -2,7 +2,7 @@
  * @Author: Thierry Aronoff
  * @Date: 2017-03-26 00:07:45
  * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-04-01 01:03:24
+ * @Last Modified time: 2017-04-01 17:52:15
  */
 'use strict';
 /**
@@ -22,9 +22,6 @@ let login = (function($) {
      * modeAuth = False => Création d'un nouveau compte
      */
     modeAuth: true,
-
-    signIn: false,
-    //     authentification: false,
 
     // Données issues du formulaire d'identification
     userId: {
@@ -51,7 +48,9 @@ let login = (function($) {
           // Affiche la zone de jeu
           self.afficheZoneJeu();
         } else {
-          self.afficheErreur('L\'utilisateur n\'existe pas, ou le mot de passe est erroné');
+          let msg;
+          msg = 'L\'utilisateur n\'existe pas, ou le mot de passe est erroné';
+          self.afficheErreur(msg);
         }
       });
     },
@@ -66,10 +65,14 @@ let login = (function($) {
       let self = this;
       this.socket.emit('check pseudo', this.userId, function(data) {
         if (data) {
-          self.afficheErreur('Le compte ' + self.userId.username + ' existe déjà');
+          let msg;
+          msg = 'Le compte ' + self.userId.username + ' existe déjà';
+          self.afficheErreur(msg);
         } else {
+          let msg;
+          msg = 'Le pseudo ' + self.userId.username + ' est disponible';
           console.log('Le pseudo est disponible');
-          self.afficheInfo('Le pseudo ' + self.userId.username + ' est disponible');
+          self.afficheInfo(msg);
 
 
           // Récupère les mots de passe entrés
@@ -151,10 +154,8 @@ let login = (function($) {
       this.updateUserID();
       if (this.modeLogin) {
         this.loginAuth();
-        return this.signin;
       } else {
         this.newAccount();
-        return this.signin;
       }
     },
 
@@ -224,9 +225,19 @@ let login = (function($) {
       if (this.modeLogin) {
         $('#passwd-verif').hide();
         $('#btn-signIn').val('S\'identifier');
+        $('#btn-Identifier').addClass('btn-primary--unselected');
+        $('#btn-creerCompte').removeClass('btn-primary--unselected');
+        $('#btn-Identifier').addClass('btn-primary');
+        $('#btn-creerCompte').removeClass('btn-primary');
+        $('#loginZone h2').text('Indentifiez-vous pour jouer');
       } else {
         $('#passwd-verif').show();
         $('#btn-signIn').val('Créer un compte');
+        $('#btn-Identifier').addClass('btn-primary--unselected');
+        $('#btn-creerCompte').removeClass('btn-primary--unselected');
+        $('#btn-Identifier').removeClass('btn-primary');
+        $('#btn-creerCompte').addClass('btn-primary');
+        $('#loginZone h2').text('Inscrivez-vous pour jouer');
       }
     },
 

@@ -3,5 +3,13 @@
 */
 
 #jeu {
-  display: none
+  height: 260px;
+  &_zone {
+    background: url("../images/bg3.jpg") no-repeat center fixed;
+    background-size: cover;
+  }
+}
+
+.game {
+  display: none;
 }

@@ -2,7 +2,7 @@
  * @Author: Thierry Aronoff
  * @Date: 2017-03-24 22:07:16
  * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-04-01 00:00:43
+ * @Last Modified time: 2017-04-01 16:16:30
  */
 * {
   -webkit-box-sizing: border-box;
@@ -29,17 +29,15 @@ h2 {
 .container {
   position: absolute;
   top: 33%; }
-
-.container h1 {
-  color: #fff;
-  letter-spacing: 1px;
-  text-align: center; }
-
-.container p {
-  font-size: 18px;
-  color: #D1E5E1;
-  letter-spacing: 1px;
-  text-align: center; }
+  .container h1 {
+    color: #fff;
+    letter-spacing: 1px;
+    text-align: center; }
+  .container p {
+    font-size: 18px;
+    color: #D1E5E1;
+    letter-spacing: 1px;
+    text-align: center; }
 
 input {
   width: 100%;
@@ -59,9 +57,8 @@ input {
   -o-transition: box-shadow .5s ease;
   -ms-transition: box-shadow .5s ease;
   transition: box-shadow .5s ease; }
-
-input:focus {
-  box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.4), 0 1px 1px rgba(255, 255, 255, 0.2); }
+  input:focus {
+    box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.4), 0 1px 1px rgba(255, 255, 255, 0.2); }
 
 /*
 * Boutons
@@ -86,7 +83,7 @@ input:focus {
   background-image: -o-linear-gradient(top, #fff, #e6e6e6);
   background-image: linear-gradient(top, #fff, #e6e6e6);
   background-repeat: repeat-x;
-  filter: progid:dximagetransform.microsoft.gradient(startColorstr=$white, endColorstr=#e6e6e6, GradientType=0);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr=$white, endColorstr=$mercury, GradientType=0);
   border-color: #e6e6e6 #e6e6e6 #e6e6e6;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   border: 1px solid #e6e6e6;
@@ -146,6 +143,8 @@ input:focus {
   border: 1px solid #3762bc;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.5); }
+  .btn-primary--unselected {
+    background-color: #a8a8a8; }
 
 .btn-primary:hover,
 .btn-primary:active,
@@ -164,27 +163,56 @@ input:focus {
   margin-left: auto;
   margin-right: auto; }
 
+.sprite {
+  background-image: url("../images/spritesheet.png");
+  background-repeat: no-repeat;
+  display: block; }
+
+.sprite-ciseaux {
+  width: 82px;
+  height: 83px;
+  background-position: -5px -5px; }
+
+.sprite-feuille {
+  width: 82px;
+  height: 83px;
+  background-position: -97px -5px; }
+
+.sprite-pierre {
+  width: 82px;
+  height: 82px;
+  background-position: -5px -98px; }
+
 /*
 * Zone de jeu
 */
 #jeu {
+  height: 260px; }
+  #jeu_zone {
+    background: url("../images/bg3.jpg") no-repeat center fixed;
+    background-size: cover; }
+
+.game {
   display: none; }
 
 /*
 * Chat
 */
-#chatBoxZone .inputChatBox {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: -150px 0 0 -150px;
-  width: 600px;
-  height: 300px; }
-
-#chatBoxZone #chatBoxWindow {
-  overflow-y: auto;
-  overflow-x: hidden;
-  height: 20vh; }
+#chatBoxZone {
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  padding: 5px; }
+  #chatBoxZone #chatBoxWindow {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 20vh;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px; }
+  #chatBoxZone h2 {
+    text-align: center; }
+  #chatBoxZone .messageForm {
+    border: 1px solid #e6e6e6;
+    border-radius: 5px; }
 
 /*
 * Error Block
