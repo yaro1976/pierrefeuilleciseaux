@@ -2,7 +2,7 @@
  * @Author: Thierry Aronoff
  * @Date: 2017-03-26 00:07:45
  * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-04-02 16:34:42
+ * @Last Modified time: 2017-04-02 17:38:16
  */
 'use strict';
 /**
@@ -34,25 +34,15 @@ let app = (function(login, Game, chat, $) {
     socket.emit('attente');
 
     let game = new Game(socket);
-    game.render(socket);
-    game.itemSelected(socket);
+    game.main(socket);
+
+    setInterval(game.render(), 1000 / 25);
 
 
     let gameZone = $('.game');
     // Gestion de l'enregistement de la page de login
     login.main(socket, gameZone);
 
-    // Retour
-    socket.on('resultat', function(data) {
-      console.log('resultat');
-
-      console.log(data);
-      for (let i in data.joueurs) {
-        console.log(data.joueurs[i].username, data.joueurs[i].answer);
-      }
-
-      console.log('winner', data.winner);
-    });
 
     // Moteur de la partie du chat
     chat.main(socket);

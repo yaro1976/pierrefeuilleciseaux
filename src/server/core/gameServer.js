@@ -2,7 +2,7 @@
  * @Author: Thierry Aronoff
  * @Date: 2017-03-28 21:16:34
  * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-04-02 16:12:12
+ * @Last Modified time: 2017-04-02 16:57:14
  */
 'use strict';
 
@@ -24,7 +24,6 @@ let shifoumiClass = (function() {
 		this.winner = '';
 		this.answer = [];
 		this.joueurs = [];
-		this.socket = socket;
 	};
 	/**
 	 * Vérifie les réponses entrées
@@ -57,11 +56,13 @@ let shifoumiClass = (function() {
 		// Sauvegarde le contexte
 		let self = this;
 		let nbReponse = 0;
+		let s = socket;
 		socket.on('item selected', function(data) {
 			console.log(socket.username, data);
 			self.answer[socket.id] = {
 				'id': socket,
 				'answer': data,
+				'username': socket.username,
 			};
 			self.joueurs.push(socket.id);
 
@@ -78,12 +79,17 @@ let shifoumiClass = (function() {
 						self.winner = self.answer[self.joueurs[0]].id.username;
 						break;
 					case 2:
-						self.winner = self.answer[self.joueurs[0]].id.username;
+						self.winner = self.answer[self.joueurs[1]].id.username;
 						break;
 				}
 				console.log('Vainqueur : ', self.winner);
-				self.socket.emit('resultat', {
-					'joueurs': self.answer,
+
+				s.emit('resultat', {
+
+					'joueur1': self.answer[self.joueurs[0]].id.username,
+					'joueur1_answer': self.answer[self.joueurs[0]].id.answer,
+					'joueur2': self.answer[self.joueurs[1]].id.username,
+					'joueur2_answer': self.answer[self.joueurs[1]].id.answer,
 					'winner': self.winner,
 				});
 			} else if (nbReponse === 1) {

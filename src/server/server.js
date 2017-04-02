@@ -2,7 +2,7 @@
  * @Author: Thierry Aronoff
  * @Date: 2017-03-24 18:58:12
  * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-04-02 14:45:02
+ * @Last Modified time: 2017-04-02 19:49:10
  */
 
 'use strict';
@@ -151,8 +151,4 @@ io.sockets.on('connection', function(socket) {
 
   //
   gameServer.getReponse(socket);
-
-  // socket.on('item selected', function(data) {
-  //   console.log(socket.username, data);
-  // });
 });
