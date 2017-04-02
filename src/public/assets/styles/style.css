@@ -188,9 +188,6 @@ input {
 */
 #jeu {
   height: 260px; }
-  #jeu_zone {
-    background: url("../images/bg3.jpg") no-repeat center fixed;
-    background-size: cover; }
 
 .game {
   display: none; }
@@ -207,7 +204,15 @@ input {
     overflow-x: hidden;
     height: 20vh;
     border: 1px solid #e6e6e6;
-    border-radius: 5px; }
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-left: 10px; }
+    #chatBoxZone #chatBoxWindow p {
+      text-align: left; }
+    #chatBoxZone #chatBoxWindow span:nth-child(2n+1) {
+      color: cornflowerblue; }
+    #chatBoxZone #chatBoxWindow span:nth-child(2n) {
+      color: chocolate; }
   #chatBoxZone h2 {
     text-align: center; }
   #chatBoxZone .messageForm {

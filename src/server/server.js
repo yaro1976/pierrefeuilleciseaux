@@ -2,12 +2,12 @@
  * @Author: Thierry Aronoff
  * @Date: 2017-03-24 18:58:12
  * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-04-01 18:05:54
+ * @Last Modified time: 2017-04-02 14:45:02
  */
 
 'use strict';
 
-/** @module server
+/** @module
  * @description Creation du serveur ExpressJS
  */
 
@@ -60,13 +60,17 @@ http.listen(PORT, function() {
 });
 
 //
-let RoomManagt = require('./core/roomGest');
+let RoomManagt = require('./core/roomMgt/roomGest');
 let roomManagt = new RoomManagt(io);
 
 // Chargement de la classe accueil
-let AccueilClass = require('./core/accueil');
+let AccueilClass = require('./core/roomMgt/accueil');
 let accueil = new AccueilClass(io);
 
+// Chargement du moteur de jeu
+let GameServer = require('./core/gameServer');
+let gameServer = new GameServer(io);
+// let gameServer = require('./core/gameServer');
 
 // Detection de l'évenement de connection d'un joueur
 io.sockets.on('connection', function(socket) {
@@ -144,4 +148,11 @@ io.sockets.on('connection', function(socket) {
     'tempsTotal': '4:00',
     'manches': 1,
   });
+
+  //
+  gameServer.getReponse(socket);
+
+  // socket.on('item selected', function(data) {
+  //   console.log(socket.username, data);
+  // });
 });

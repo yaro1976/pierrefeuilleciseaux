@@ -2,31 +2,41 @@
  * @Author: Thierry Aronoff
  * @Date: 2017-04-01 00:27:02
  * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-04-01 00:51:40
+ * @Last Modified time: 2017-04-02 00:54:17
  */
 
 'use strict';
 
+
 /**
- * @module Accueil
+ * @module
  * @description Mise en attente des joueurs
+ * @export accueilClass
  */
 
+
+/**
+ * Zone d'accueil des joueurs,
+ * afin de les répartir dans les salles de jeux
+ * @class
+ */
 let accueilClass = (function() {
   /**
-   * @function AccueilClass
-   * @description Zone d'accueil des joueurs,
+   * Zone d'accueil des joueurs,
    * afin de les répartir dans les salles de jeux
+   *
+   * @constructor
    * @param {object} io - Class socket.io
    */
   function AccueilClass(io) {
+    /** accueilClass - Copie de l'objet AccueilClass */
     let accueilClass = this;
     accueilClass.accueil = [];
     accueilClass.updating = false;
 
     /**
-     * @function push
-     * @description Sauvegarde le socket du joueur
+     * Sauvegarde le socket du joueur
+     * @method
      * @param {object} socket - Socket du joueur connecté
      */
     accueilClass.push = function(socket) {
@@ -35,8 +45,8 @@ let accueilClass = (function() {
       }
     };
     /**
-     * @function kick
-     * @description Retire le socket du joueur
+     * Retire le socket du joueur
+     * @method
      * @param {object} socket - Socket du joueur connecté
      */
     accueilClass.kick = function(socket) {
@@ -45,8 +55,8 @@ let accueilClass = (function() {
     };
 
     /**
-     * @function clean
-     * @description Donne la liste des sockets présents
+     * Donne la liste des sockets présents
+     * @method
      */
     accueilClass.clean = function() {
       let sockets = accueilClass.accueil;
@@ -56,8 +66,8 @@ let accueilClass = (function() {
     };
 
     /**
-     * @function dispatch
-     * @description Répati les connexions et créé de nouvelles salles de jeu
+     *  Répati les connexions et créé de nouvelles salles de jeu
+     * @method
      * @param {object} RmMgt - Classe de gestion des salles de jeu
      */
     accueilClass.dispatch = function(RmMgt) {

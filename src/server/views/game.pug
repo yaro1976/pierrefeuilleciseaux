@@ -1,18 +1,31 @@
 .game
   // Zone de jeu
   .row
-    #jeu.col-sm-4.col-xs-4.col-sm-offset-4.col-xs-offset-4
+    #jeu.text-center
       #jeu_informations
       |
-      #jeu_zone.text-center
-        .col-md-4.col-xs-4
-          a.sprite.sprite-ciseaux(href='#Ciseaux')
+      #jeu_zone.col-sm-4.col-xs-4.col-sm-offset-4.col-xs-offset-4
+        #me.player_name
+
+        .col-md-4.col-xs-4#player1
+          p#ciseaux.sprite.sprite-ciseaux
         |
         .col-md-4.col-xs-4
-          a.sprite.sprite-feuille(href='#Feuille')
+          p#feuille.sprite.sprite-feuille
         |
         .col-md-4.col-xs-4
-          a.sprite.sprite-pierre(href='#Pierre')
+          p#pierre.sprite.sprite-pierre
+      #jeu_zone_adv.col-sm-4.col-xs-4.col-sm-offset-4.col-xs-offset-4
+        #you.player_name
+
+        .col-md-4.col-xs-4#player2
+          p#ciseaux.sprite.sprite-ciseaux
+        |
+        .col-md-4.col-xs-4
+          p#feuille.sprite.sprite-feuille
+        |
+        .col-md-4.col-xs-4
+          p#pierre.sprite.sprite-pierre
   // Fin de Zone de jeu
   // Chat
   .row

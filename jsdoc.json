@@ -3,7 +3,9 @@
     "allowUnknownTags": true
   },
   "opts": {
-    "destination": "./docs/gen"
+    "destination": "./docs/gen",
+    "encoding": "utf8",
+    "recurse": true
   },
   "plugins": [
     "plugins/markdown"
@@ -15,9 +17,13 @@
       "outputSourceFiles": true
     },
     "path": "ink-docstrap",
-    "theme": "cerulean",
+    "theme": "cyborg2",
     "navType": "vertical",
     "linenums": true,
-    "dateFormat": "MMMM Do YYYY, h:mm:ss a"
+    "dateFormat": "MMMM Do YYYY, h:mm:ss a",
+    "outputSourceFiles": true,
+    "syntaxTheme": "dark",
+    "outputSourcePath": true,
+    "inverseNav": false
   }
 }

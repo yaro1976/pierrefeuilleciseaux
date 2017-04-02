@@ -20,6 +20,19 @@
     height: 20vh;
     border: 1px solid $mercury;
     border-radius: 5px;
+    padding-left: 10px;
+    padding-left: 10px;
+    p {
+      text-align: left;
+    }
+    span {
+      &:nth-child(2n+1) {
+        color: cornflowerblue;
+      }
+      &:nth-child(2n) {
+        color: chocolate;
+      }
+    }
   }
   h2 {
     // border: 1px solid $mercury;
