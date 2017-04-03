@@ -2,7 +2,7 @@
  * @Author: Thierry Aronoff
  * @Date: 2017-03-24 18:58:12
  * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-04-03 21:59:02
+ * @Last Modified time: 2017-04-03 22:39:59
  */
 
 'use strict';
@@ -42,6 +42,10 @@ var index = require('./routes/index');
 
 // Emplacement des fichiers statiques (css, js, images)
 app.use(express.static(path.join(__dirname, '..', '/public')));
+
+// Mise à jour des chemins des vues
+app.set('views', path.join(__dirname, '/views'));
+
 
 // Activation de pug
 app.set('view engine', 'pug');

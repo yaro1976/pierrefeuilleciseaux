@@ -8,9 +8,9 @@ const gulp = require('gulp');
 const nodemon = require('gulp-nodemon');
 const liveload = require('gulp-livereload');
 const sass = require('gulp-sass');
-let jsdoc = require('gulp-jsdoc3');
+var jsdoc = require('gulp-jsdoc3');
 
-gulp.task('sass', function() {
+gulp.task('sass', function () {
     console.log('Compilation des fichiers SASS');
     gulp.src('./src/public/assets/styles/sass/*.scss')
         .pipe(sass())
@@ -18,29 +18,29 @@ gulp.task('sass', function() {
         .pipe(liveload());
 });
 
-gulp.task('js', function() {
+gulp.task('js', function () {
     console.log('Traitement des fichiers Javascript');
     gulp.src('./src/public/js/client.js')
         .pipe(gulp.dest('./src/public/js/dist'))
         .pipe(liveload());
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', function () {
     gulp.watch('./src/public/**/*.scss', ['sass']);
     gulp.watch('./src/public/**/*.js', ['js']);
     gulp.watch('./src/**/*.js', ['js']);
     gulp.watch('**/src/**/*.js', ['jsdoc']);
 });
 
-gulp.task('develop', function() {
+gulp.task('develop', function () {
     console.log('Lancement du serveur Web');
     liveload.listen();
     nodemon({
         script: 'src/server/server.js',
         ext: 'js handlebars hbs',
         stdout: false,
-    }).on('readable', function() {
-        this.stdout.on('data', function(chunk) {
+    }).on('readable', function () {
+        this.stdout.on('data', function (chunk) {
             if (/^Express started on/.test(chunk)) {
                 liveload.changed(__dirname);
             }
@@ -50,9 +50,9 @@ gulp.task('develop', function() {
     });
 });
 
-gulp.task('jsdoc', function(cb) {
+gulp.task('jsdoc', function (cb) {
     console.log('Génération de la documentation');
-    let config = require('./jsdoc.json');
+    var config = require('./jsdoc.json');
     gulp.src(['./README.md', './src/public/assets/js/**/*.js', './src/server/**/*.js'], {
             read: true,
         })
