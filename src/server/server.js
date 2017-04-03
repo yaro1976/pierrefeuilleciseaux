@@ -2,7 +2,7 @@
  * @Author: Thierry Aronoff
  * @Date: 2017-03-24 18:58:12
  * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-04-03 21:50:23
+ * @Last Modified time: 2017-04-03 21:59:02
  */
 
 'use strict';
@@ -35,7 +35,7 @@ var bodyParser = require('body-parser');
 const pug = require('pug');
 
 // Définition du port d'écoute
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 80;
 
 // Chargement des fichiers de définition des routes
 var index = require('./routes/index');
