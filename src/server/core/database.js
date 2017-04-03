@@ -29,17 +29,17 @@ mongoose.connect('mongodb://' + config.db.address + '/' + config.db.dbname);
  *  Ensemble de méthodes d'accès à la base de données
  * @class
  */
-let dbClass = {};
+var dbClass = {};
 /**
  * Vérifie la disponibilité du pseudonyme entré
  * @function
  * @param {string} username - Pseudonyme du nom du joueur
  * @param {function} callback - Function de callback
  */
-dbClass.checkUsername = function(username, callback) {
+dbClass.checkUsername = function (username, callback) {
 	User.find({
 		'name': username,
-	}, function(err, data) {
+	}, function (err, data) {
 		if (err) throw err;
 		if (data.length >= 1) {
 			callback(true);
@@ -56,11 +56,11 @@ dbClass.checkUsername = function(username, callback) {
  * @param {string} password - Mot de passe associé au pseudonyme entré
  * @param {function} callback - Function de callback
  */
-dbClass.checkValidity = function(username, password, callback) {
+dbClass.checkValidity = function (username, password, callback) {
 	User.find({
 		'name': username,
 		'password': password,
-	}, function(err, data) {
+	}, function (err, data) {
 		if (err) throw err;
 		if (data.length >= 1) {
 			callback(true);
@@ -76,11 +76,11 @@ dbClass.checkValidity = function(username, password, callback) {
  * @param {string} password - Mot de passe associé au pseudonyme entré
  * @param {function} callback - Function de callback
  */
-dbClass.insertPlayer = function(username, password, callback) {
+dbClass.insertPlayer = function (username, password, callback) {
 	User.create({
 		'name': username,
 		'password': password,
-	}, function(err, data) {
+	}, function (err, data) {
 		if (err) {
 			callback(false);
 		} else {

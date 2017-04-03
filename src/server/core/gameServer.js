@@ -15,12 +15,12 @@
 /** Classe Shifoumi
  * @class
  */
-let shifoumiClass = (function() {
+var shifoumiClass = (function () {
 	/**
 	 * Le Shifoumi
 	 * @constructor
 	 */
-	let Shifoumi = function(socket) {
+	var Shifoumi = function (socket) {
 		this.winner = '';
 		this.answer = [];
 		this.joueurs = [];
@@ -31,7 +31,7 @@ let shifoumiClass = (function() {
 	 * @param {object} player1 - 1er joueur
 	 * @param {object} player2 - 2e joueur
 	 */
-	Shifoumi.prototype.checkResult = function(player1, player2) {
+	Shifoumi.prototype.checkResult = function (player1, player2) {
 		// Résolution des choix des joueurs
 		if (player1.answer === player2.answer) {
 			this.winner = 0;
@@ -52,12 +52,12 @@ let shifoumiClass = (function() {
 	 * @param {object} socket - socket du joueur
 	 *
 	 */
-	Shifoumi.prototype.getReponse = function(socket) {
+	Shifoumi.prototype.getReponse = function (socket) {
 		// Sauvegarde le contexte
-		let self = this;
-		let nbReponse = 0;
-		let s = socket;
-		socket.on('item selected', function(data) {
+		var self = this;
+		var nbReponse = 0;
+		var s = socket;
+		socket.on('item selected', function (data) {
 			console.log(socket.username, data);
 			self.answer[socket.id] = {
 				'id': socket,
@@ -66,7 +66,7 @@ let shifoumiClass = (function() {
 			};
 			self.joueurs.push(socket.id);
 
-			for (let i in self.answer) {
+			for (var i in self.answer) {
 				nbReponse++;
 			}
 			if (nbReponse === 2) {

@@ -14,32 +14,32 @@
  * Fonction principale
  * @function
  */
-let app = (function(login, Game, chat, $) {
-  $(function() {
+var app = (function (login, Game, chat, $) {
+  $(function () {
     // Chargement du module socket.io
-    let socket = io.connect();
+    var socket = io.connect();
 
-    socket.on('connecte', function(data) {
-      let mesg = '';
+    socket.on('connecte', function (data) {
+      var mesg = '';
       mesg += data.msg;
       mesg += ' ' + data.username;
       chat.ecrire(mesg, '');
     });
 
-    socket.on('compteur joueurs', function(data) {
+    socket.on('compteur joueurs', function (data) {
       $('#nbjoueurs').html('<p>Actuellement en ligne : ' + data + '</p>');
       // chat.ecrire('Actuellement en ligne : ' + data, 'Info');
     });
 
     socket.emit('attente');
 
-    let game = new Game(socket);
+    var game = new Game(socket);
     game.main(socket);
 
     setInterval(game.render(), 1000 / 25);
 
 
-    let gameZone = $('.game');
+    var gameZone = $('.game');
     // Gestion de l'enregistement de la page de login
     login.main(socket, gameZone);
 

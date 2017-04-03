@@ -16,7 +16,7 @@
  * @class
  * @param {object} socket - Socket.io
  */
-let Game = (function() {
+var Game = (function () {
   /**
    * Partie principale du jeu
    * @constructor
@@ -43,9 +43,9 @@ let Game = (function() {
    * @method
    * @param {number} score - Score du joueur
    */
-  Game.prototype.render = function() {
+  Game.prototype.render = function () {
     // Affichage des informations de jeu
-    let information = '';
+    var information = '';
     information += '<p>Manches restantes ' + this.game.manches + '';
     information += ' - ';
     information += 'Score ' + this.game.score + '/' + this.game.advScore + '</p>';
@@ -60,12 +60,12 @@ let Game = (function() {
     $('#adv_answer').html('<p>' + this.adv_resp + '</p>');
   };
 
-  Game.prototype.majnfoJeu = function() {
+  Game.prototype.majnfoJeu = function () {
     // Sauvegarde du context de this
     /** @this Game */
-    let self = this;
+    var self = this;
 
-    this.socket.on('jeu', function(data) {
+    this.socket.on('jeu', function (data) {
       self.game = {
         'manches': data.manches,
         'score': data.yourScore,
@@ -80,19 +80,19 @@ let Game = (function() {
    * Stock l'élément sélectionné
    * @method
    */
-  Game.prototype.itemSelected = function() {
-    let $pierre = $('#pierre');
-    let $feuille = $('#feuille');
-    let $ciseaux = $('#ciseaux');
+  Game.prototype.itemSelected = function () {
+    var $pierre = $('#pierre');
+    var $feuille = $('#feuille');
+    var $ciseaux = $('#ciseaux');
 
     // Sauvegarde du contexte de this
     /**
      * @this Game
      */
-    let self = this;
+    var self = this;
 
     // Pierre sélectionnée
-    $pierre.click(function() {
+    $pierre.click(function () {
       // Si aucun choix n'a été effectué auparavant
       if (self.item === '') {
         self.socket.emit('item selected', 'pierre');
@@ -102,7 +102,7 @@ let Game = (function() {
       }
     });
     // Feuille sélectionnée
-    $feuille.click(function() {
+    $feuille.click(function () {
       // Si aucun choix n'a été effectué auparavant
       if (self.item === '') {
         self.socket.emit('item selected', 'feuille');
@@ -112,7 +112,7 @@ let Game = (function() {
       }
     });
     // Ciseaux sélectionné
-    $ciseaux.click(function() {
+    $ciseaux.click(function () {
       // Si aucun choix n'a été effectué auparavant
       if (self.item === '') {
         self.socket.emit('item selected', 'ciseaux');
@@ -127,12 +127,12 @@ let Game = (function() {
    * Traite le résultat du jeu
    * @function
    */
-  Game.prototype.getResult = function() {
+  Game.prototype.getResult = function () {
     // Retour
     // sauvegarde du contexte
     /** @ this Game */
-    let self = this;
-    this.socket.on('resultat', function(data) {
+    var self = this;
+    this.socket.on('resultat', function (data) {
       self.me = data.joueur1;
       self.adv = data.joueur2;
       self.adv_resp = data.joueur2_answer;
@@ -146,7 +146,7 @@ let Game = (function() {
    * Fonction principlae du jeu
    * @function
    */
-  Game.prototype.main = function() {
+  Game.prototype.main = function () {
     this.render();
     this.itemSelected();
     this.getResult();

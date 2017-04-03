@@ -15,9 +15,9 @@
  * @class
  * @param {object} $ - jQuery
  */
-let chat = (function($) {
+var chat = (function ($) {
   /** @constructor */
-  let chat = {
+  var chat = {
 
   };
   /**
@@ -27,8 +27,8 @@ let chat = (function($) {
    * @param {string} username - Auteur du message
    * @return {string} Message mis en forme
    */
-  chat.formatMessage = function(msg, username) {
-    let msgFormat = '<p>';
+  chat.formatMessage = function (msg, username) {
+    var msgFormat = '<p>';
 
     // Si l'utilisateur n'est pas renseigné, on ommet le champ
     if (username) {
@@ -44,12 +44,12 @@ let chat = (function($) {
    *  Gere l'envoi du message vers le serveur
    * @method
    */
-  chat.sendMessage = function() {
-    let self = this;
-    this.$messageForm.submit(function(e) {
+  chat.sendMessage = function () {
+    var self = this;
+    this.$messageForm.submit(function (e) {
       e.preventDefault();
       // Vérification qu'un message est bien saisi
-      let mesg = self.$message.val();
+      var mesg = self.$message.val();
 
       if (mesg.length !== 0) {
         self.socket.emit('send message', mesg);
@@ -64,7 +64,7 @@ let chat = (function($) {
    * @param {string} msg - Message à écrire
    * @param {string} user - Auteur du message
    */
-  chat.ecrire = function(msg, user) {
+  chat.ecrire = function (msg, user) {
     this.$chat.append(this.formatMessage(msg, user));
   };
 
@@ -72,10 +72,10 @@ let chat = (function($) {
    * Receptionne les messages à partir du serveur
    * @method
    */
-  chat.receptMessage = function() {
+  chat.receptMessage = function () {
     // Reception d'un nouveau message
-    let self = this;
-    this.socket.on('new message', function(data) {
+    var self = this;
+    this.socket.on('new message', function (data) {
       self.ecrire(data.msg, data.username);
       // self.$chat.append(self.formatMessage(data.msg, data.username));
     });
@@ -86,7 +86,7 @@ let chat = (function($) {
    * @method
    * @param {object} socket - Socket du client
    */
-  chat.main = function(socket) {
+  chat.main = function (socket) {
     this.socket = socket;
 
     this.init();
@@ -99,7 +99,7 @@ let chat = (function($) {
    * Initialize la class Chat
    * @method
    */
-  chat.init = function() {
+  chat.init = function () {
     /**
      * Traitement du chat
      */

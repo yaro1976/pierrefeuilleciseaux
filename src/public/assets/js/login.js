@@ -14,8 +14,8 @@
  *  Méthodes liées à la page de login de l'utilisateur
  * @class
  */
-let login = (function($) {
-  let login = {
+var login = (function ($) {
+  var login = {
     /* Sauvegarde du mode du formulaire
      * modeAuth = True => Authentification du joueur
      * modeAuth = False => Création d'un nouveau compte
@@ -33,10 +33,10 @@ let login = (function($) {
    * Identification de l'utilisateur
    * @method
    */
-  login.loginAuth = function() {
-    let self = this;
+  login.loginAuth = function () {
+    var self = this;
     // Le joueur s'identifie
-    this.socket.emit('sign in', self.userId, function(data) {
+    this.socket.emit('sign in', self.userId, function (data) {
       if (data) {
         console.log('Joueur identifié');
         self.afficheInfo('Bienvenue');
@@ -48,7 +48,7 @@ let login = (function($) {
         // Affiche la zone de jeu
         self.afficheZoneJeu();
       } else {
-        let msg;
+        var msg;
         msg = 'L\'utilisateur n\'existe pas, ou le mot de passe est erroné';
         self.afficheErreur(msg);
       }
@@ -59,29 +59,29 @@ let login = (function($) {
    *  Créer un nouveau compte
    * @method
    */
-  login.newAccount = function() {
+  login.newAccount = function () {
     // le joueur créé un compte
     // Vérifier que le peudo est dispo
-    let self = this;
-    this.socket.emit('check pseudo', this.userId, function(data) {
+    var self = this;
+    this.socket.emit('check pseudo', this.userId, function (data) {
       if (data) {
-        let msg;
+        var msg;
         msg = 'Le compte ' + self.userId.username + ' existe déjà';
         self.afficheErreur(msg);
       } else {
-        let msg;
+        var msg;
         msg = 'Le pseudo ' + self.userId.username + ' est disponible';
         console.log('Le pseudo est disponible');
         self.afficheInfo(msg);
 
         // Récupère les mots de passe entrés
-        let pass1 = self.$passwd.val();
-        let pass2 = self.$passwdVerif.val();
+        var pass1 = self.$passwd.val();
+        var pass2 = self.$passwdVerif.val();
         // Vérifie que les mots de passe sont identiques
         console.log('mots de pass', pass1, pass2);
         if (pass1 === pass2) {
           // Créer compte
-          self.socket.emit('creer compte', self.userId, function(data) {
+          self.socket.emit('creer compte', self.userId, function (data) {
             if (data) {
               // Le compte a bien été créé
               $('#error-block').hide();
@@ -111,7 +111,7 @@ let login = (function($) {
    *  Initialise la classe Login
    * @method
    */
-  login.init = function() {
+  login.init = function () {
     this.$usernameForm = $('#usernameForm');
     this.$username = $('#username');
     this.$passwd = $('#passwd');
@@ -131,7 +131,7 @@ let login = (function($) {
    * Action quand effectuée quand l'action Créer un un compte est appelée
    * @method
    */
-  login.clickCreerCompte = function() {
+  login.clickCreerCompte = function () {
     // Le joueur créé un compte
     this.modeLogin = false;
   };
@@ -140,7 +140,7 @@ let login = (function($) {
    *  Fonction Appelée lors de la sélection du bouton autentifier
    * @method
    */
-  login.clickAuthentifier = function() {
+  login.clickAuthentifier = function () {
     // Le joueur s'identifie
     this.modeLogin = true;
   };
@@ -149,7 +149,7 @@ let login = (function($) {
    * Function appelée lors de la validation du formulaire
    * @method
    */
-  login.click = function() {
+  login.click = function () {
     this.updateUserID();
     if (this.modeLogin) {
       this.loginAuth();
@@ -162,7 +162,7 @@ let login = (function($) {
    * Recupère les données issues du formulaire
    * @method
    */
-  login.updateUserID = function() {
+  login.updateUserID = function () {
     this.userId = {
       'username': this.$username.val(),
       'passwd': this.$passwd.val(),
@@ -174,7 +174,7 @@ let login = (function($) {
    * @method
    * @param {string} erreur - Message d'erreur à afficher
    */
-  login.afficheErreur = function(erreur) {
+  login.afficheErreur = function (erreur) {
     $('#error-block').text(erreur);
     $('#error-block').show();
   };
@@ -184,7 +184,7 @@ let login = (function($) {
    * @method
    * @param {string} msgInfo - Message d'information à afficher
    */
-  login.afficheInfo = function(msgInfo) {
+  login.afficheInfo = function (msgInfo) {
     $('#information-block').text(msgInfo);
     $('#information-block').show();
   };
@@ -195,22 +195,22 @@ let login = (function($) {
    * @param {object} socket - Objet Socket.io
    * @param {object} gameZone - Zone de jeu
    */
-  login.main = function(socket, gameZone) {
+  login.main = function (socket, gameZone) {
       this.socket = socket;
       this.$jeu = gameZone;
-      let self = this;
+      var self = this;
 
       this.init();
-      this.$btnCreerCompte.click(function() {
+      this.$btnCreerCompte.click(function () {
         self.clickCreerCompte();
         self.render();
       });
-      this.$btnIdentifier.click(function() {
+      this.$btnIdentifier.click(function () {
         self.clickAuthentifier();
         self.render();
       });
 
-      this.$signInBtn.click(function(e) {
+      this.$signInBtn.click(function (e) {
         e.preventDefault();
         self.click();
       });
@@ -220,7 +220,7 @@ let login = (function($) {
      * Met à jour le formulaire de login
      * @method
      */
-    login.render = function() {
+    login.render = function () {
       if (this.modeLogin) {
         $('#passwd-verif').hide();
         $('#btn-signIn').val('S\'identifier');
@@ -244,7 +244,7 @@ let login = (function($) {
      * Cache le formulaire de login
      * @method
      */
-    login.cacheForm = function() {
+    login.cacheForm = function () {
       $('#loginZone').hide();
     },
 
@@ -252,7 +252,7 @@ let login = (function($) {
      * Cache la zone de jeu
      * @method
      */
-    login.afficheZoneJeu = function() {
+    login.afficheZoneJeu = function () {
       this.$jeu.show();
     };
 

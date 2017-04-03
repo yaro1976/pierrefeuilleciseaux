@@ -13,7 +13,7 @@
  */
 
 /** @class */
-let SalleJeux = (function() {
+var SalleJeux = (function () {
   /**
    * Classe SalleJeux - Structure des salles de jeu
    * @constructor
@@ -24,7 +24,7 @@ let SalleJeux = (function() {
    * @param {object} socket1 - socket du deuxième joueur
    */
   function SalleJeux(RoomMgt, io, id, socket0, socket1) {
-    let salles = this;
+    var salles = this;
   }
 
   return SalleJeux;

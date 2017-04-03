@@ -15,7 +15,7 @@
  */
 
 // Chargement des pré-requis
-let SalleJeux = require('./salles_jeux');
+var SalleJeux = require('./salles_jeux');
 
 // Création d'une salle d'attente
 
@@ -25,10 +25,10 @@ let SalleJeux = require('./salles_jeux');
  *
  * @param {object} io - Objet Socket.io
  */
-let RoomsGest = (function() {
+var RoomsGest = (function () {
   /** @constructor */
   function RoomsGest(io) {
-    let roomsGest = this;
+    var roomsGest = this;
     roomsGest.rooms = {};
     roomsGest.roomIndex = {};
     this.io = io;
@@ -37,10 +37,10 @@ let RoomsGest = (function() {
    * Créé une nouvelle salle de jeu
    * @method
    */
-  RoomsGest.create = function(socket0, socket1) {
+  RoomsGest.create = function (socket0, socket1) {
     /** Nom d'une nouvelle salle de jeu*/
-    let salleID = socket0.id + socket1.id;
-    let salleJeux = new SalleJeux(this.roomsGest, this.io, salleID, socket0, socket1);
+    var salleID = socket0.id + socket1.id;
+    var salleJeux = new SalleJeux(this.roomsGest, this.io, salleID, socket0, socket1);
 
     // Ajout des joueurs dans la nouvelle salle de jeu
     socket0.join(salleID);
@@ -72,8 +72,8 @@ let RoomsGest = (function() {
    * @method
    * @param {object} salleID - Identifiant de la salle de jeu
    */
-  RoomsGest.destroy = function(salleID) {
-    let room = this.roomsGest.rooms[salleID];
+  RoomsGest.destroy = function (salleID) {
+    var room = this.roomsGest.rooms[salleID];
   };
 
 

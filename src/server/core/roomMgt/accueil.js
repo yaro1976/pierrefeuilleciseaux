@@ -20,7 +20,7 @@
  * afin de les répartir dans les salles de jeux
  * @class
  */
-let accueilClass = (function() {
+var accueilClass = (function () {
   /**
    * Zone d'accueil des joueurs,
    * afin de les répartir dans les salles de jeux
@@ -30,7 +30,7 @@ let accueilClass = (function() {
    */
   function AccueilClass(io) {
     /** accueilClass - Copie de l'objet AccueilClass */
-    let accueilClass = this;
+    var accueilClass = this;
     accueilClass.accueil = [];
     accueilClass.updating = false;
 
@@ -39,7 +39,7 @@ let accueilClass = (function() {
      * @method
      * @param {object} socket - Socket du joueur connecté
      */
-    accueilClass.push = function(socket) {
+    accueilClass.push = function (socket) {
       if (accueilClass.accueil.indexOf(socket) < 0) {
         accueilClass.accueil.push(socket);
       }
@@ -49,8 +49,8 @@ let accueilClass = (function() {
      * @method
      * @param {object} socket - Socket du joueur connecté
      */
-    accueilClass.kick = function(socket) {
-      let index = accueilClass.accueil.indexOf(socket);
+    accueilClass.kick = function (socket) {
+      var index = accueilClass.accueil.indexOf(socket);
       if (index >= 0) accueilClass.accueil.splice(index, 1);
     };
 
@@ -58,9 +58,9 @@ let accueilClass = (function() {
      * Donne la liste des sockets présents
      * @method
      */
-    accueilClass.clean = function() {
-      let sockets = accueilClass.accueil;
-      accueilClass.accueil = sockets.filter(function(socket) {
+    accueilClass.clean = function () {
+      var sockets = accueilClass.accueil;
+      accueilClass.accueil = sockets.filter(function (socket) {
         return socket !== null;
       });
     };
@@ -70,13 +70,13 @@ let accueilClass = (function() {
      * @method
      * @param {object} RmMgt - Classe de gestion des salles de jeu
      */
-    accueilClass.dispatch = function(RmMgt) {
+    accueilClass.dispatch = function (RmMgt) {
       if (accueilClass.dispatching) return;
       accueilClass.dispatching = true;
 
       while (accueilClass.accueil.length > 1) {
-        let player0 = accueilClass.accueil.splice(0, 1);
-        let player1 = accueilClass.accueil.splice(0, 1);
+        var player0 = accueilClass.accueil.splice(0, 1);
+        var player1 = accueilClass.accueil.splice(0, 1);
         RmMgt.create(player0[0], player1[0]);
       }
       accueilClass.dispatching = false;
