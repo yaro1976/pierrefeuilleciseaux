@@ -1,14 +1,17 @@
 /*
  * @Author: Thierry Aronoff
  * @Date: 2017-03-24 18:58:12
- * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-04-03 22:39:59
+ * @Last Modified by: Thierry ARONOFF
+ * @Last Modified time: 2017-04-04 15:36:40
  */
 
 'use strict';
 
-/** @module
- * @description Creation du serveur ExpressJS
+/** 
+ * Creation du serveur ExpressJS
+ * 
+ * @module
+ *  
  */
 
 // Creation du serveur
@@ -17,7 +20,7 @@ var express = require('express');
 const app = express();
 
 // Fichier de configuration de l'application
-var config = require('./core/config');
+var config = require('./config/config');
 
 // Ajout du module `http`
 var http = require('http').Server(app);

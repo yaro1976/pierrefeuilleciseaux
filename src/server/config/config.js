@@ -1,8 +1,8 @@
 /*
  * @Author: Thierry Aronoff
  * @Date: 2017-03-28 21:09:59
- * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-04-03 22:05:09
+ * @Last Modified by: Thierry ARONOFF
+ * @Last Modified time: 2017-04-04 15:32:49
  */
 
 /**
@@ -10,9 +10,9 @@
  */
 
 /**
- * @namespace
+ * Configuration des accès à la base de données et du moteur de jeu
  *
- * @description Configuration des accès à la base de données et du moteur de jeu
+ * @namespace
  *
  * @property {object} db - Configuration de la base de données
  * @property {string} db.dbname - Nom de la base de données

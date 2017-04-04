@@ -1,8 +1,8 @@
 /*
  * @Author: Thierry Aronoff
  * @Date: 2017-03-28 21:45:38
- * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-04-02 11:33:57
+ * @Last Modified by: Thierry ARONOFF
+ * @Last Modified time: 2017-04-04 15:36:46
  */
 
 'use strict';
@@ -15,7 +15,7 @@
  */
 
 // Chargement des dépendances
-const config = require('../core/config');
+const config = require('../config/config');
 const User = require('../models/userModels');
 const mongoose = require('mongoose');
 
