@@ -2,7 +2,7 @@
  * @Author: Thierry Aronoff
  * @Date: 2017-04-01 17:55:15
  * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-04-04 22:59:27
+ * @Last Modified time: 2017-04-05 22:34:28
  */
 'use strict';
 
@@ -131,9 +131,11 @@ var Game = (function () {
    * @function
    */
   Game.prototype.getResult = function (socket) {
-    // Retour
-    // sauvegarde du contexte
-    /** @ this Game */
+    /** 
+     * Retour
+     * sauvegarde du contexte
+     * @this Game 
+     */
     var self = this;
     socket.on('resultat', function (data) {
       self.me = data.joueur1;

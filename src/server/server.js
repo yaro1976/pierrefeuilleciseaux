@@ -1,8 +1,8 @@
 /*
  * @Author: Thierry Aronoff
  * @Date: 2017-03-24 18:58:12
- * @Last Modified by: Thierry ARONOFF
- * @Last Modified time: 2017-04-05 13:00:55
+ * @Last Modified by: Thierry Aronoff
+ * @Last Modified time: 2017-04-05 22:38:34
  */
 
 'use strict';
@@ -44,7 +44,6 @@ var path = require('path');
 
 // Logger
 var morgan = require('morgan');
-
 
 // Activation du module body parser
 var bodyParser = require('body-parser');
@@ -95,3 +94,4 @@ var socketSystem = require('./core/socketSystem');
 // Activation de la socket
 var socketSyst = new socketSystem(http);
 socketSyst.main();
+socketSyst.update();

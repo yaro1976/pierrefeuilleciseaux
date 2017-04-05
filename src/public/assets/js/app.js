@@ -2,7 +2,7 @@
  * @Author: Thierry Aronoff
  * @Date: 2017-03-26 00:07:45
  * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-04-02 17:38:16
+ * @Last Modified time: 2017-04-05 22:09:47
  */
 'use strict';
 /**
@@ -36,7 +36,7 @@ var app = (function (login, Game, chat, $) {
     var game = new Game(socket);
     game.main(socket);
 
-    setInterval(game.render(), 1000 / 25);
+    // setInterval(game.render(), 1000 / 25);
 
 
     var gameZone = $('.game');

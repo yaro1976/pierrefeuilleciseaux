@@ -1,8 +1,8 @@
 /*
  * @Author: Thierry ARONOFF
  * @Date: 2017-04-05 12:38:14
- * @Last Modified by: Thierry ARONOFF
- * @Last Modified time: 2017-04-05 13:12:35
+ * @Last Modified by: Thierry Aronoff
+ * @Last Modified time: 2017-04-05 22:48:38
  */
 
 'use strict';
@@ -108,8 +108,7 @@ socketSystem.prototype.main = function () {
         socket.on('username', function (data) {
             socket.username = data;
             self.listClient[socket.id] = socket;
-
-            console.log(self.listClient)
+            
             // On salue le nouveau joueur
             // Transfert du nouveau joueur connecté à un salon
             self.io.to(socket.id).emit('connecte', {
@@ -146,7 +145,10 @@ socketSystem.prototype.main = function () {
         var self = this;
 
         setInterval(function () {
+            console.log('update');
             for (var i in self.listClient) {
+                console.log(self.listClient[i].username);
+                
                 self.listClient[i].emit('jeu', {
                     'yourScore': 1,
                     'hisScore': 3,
@@ -155,8 +157,7 @@ socketSystem.prototype.main = function () {
                     'manches': 1,
                 });
             };
-        }, 1000 / 25);
-
+        }, 100 / 25);
     }
 }
 
