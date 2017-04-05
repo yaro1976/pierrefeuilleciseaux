@@ -2,7 +2,7 @@
  * @Author: Thierry Aronoff
  * @Date: 2017-03-28 21:16:34
  * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-04-02 16:57:14
+ * @Last Modified time: 2017-04-04 22:32:18
  */
 'use strict';
 
@@ -56,7 +56,7 @@ var shifoumiClass = (function () {
 		// Sauvegarde le contexte
 		var self = this;
 		var nbReponse = 0;
-		var s = socket;
+		
 		socket.on('item selected', function (data) {
 			console.log(socket.username, data);
 			self.answer[socket.id] = {
@@ -84,7 +84,7 @@ var shifoumiClass = (function () {
 				}
 				console.log('Vainqueur : ', self.winner);
 
-				s.emit('resultat', {
+				socket.emit('resultat', {
 
 					'joueur1': self.answer[self.joueurs[0]].id.username,
 					'joueur1_answer': self.answer[self.joueurs[0]].id.answer,

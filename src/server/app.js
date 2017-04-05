@@ -1,8 +1,8 @@
 /*
  * @Author: Thierry Aronoff
  * @Date: 2017-03-24 18:58:12
- * @Last Modified by: Thierry ARONOFF
- * @Last Modified time: 2017-04-04 15:36:40
+ * @Last Modified by: Thierry Aronoff
+ * @Last Modified time: 2017-04-04 22:33:29
  */
 
 'use strict';
@@ -22,14 +22,29 @@ const app = express();
 // Fichier de configuration de l'application
 var config = require('./config/config');
 
+// Mise en place du debogage
+var debug = require('debug')('http');
+
 // Ajout du module `http`
 var http = require('http').Server(app);
 
 // Chargement du module `socket.io`
 var io = require('socket.io')(http);
 
+// Activation de la compression des requëtes
+var compression = require('compression');
+app.use(compression());
+
+// Security 
+var helmet = require('helmet')
+app.use(helmet())
+
 // Activation du module path
 var path = require('path');
+
+// Logger
+var morgan = require('morgan');
+
 
 // Activation du module body parser
 var bodyParser = require('body-parser');
@@ -37,11 +52,19 @@ var bodyParser = require('body-parser');
 // Chargement du module pug
 const pug = require('pug');
 
-// Définition du port d'écoute
-const PORT = process.env.PORT || 80;
+var PORT;
+
+if (app.get('env') === 'development') {
+  // Définition du port d'écoute de développement
+  PORT = process.env.PORT || 3000;
+  app.use(morgan('combined'));
+} else {
+  // Définition du port d'écoute de production
+  PORT = process.env.PORT || 80;
+}
 
 // Chargement des fichiers de définition des routes
-var index = require('./routes/index');
+var index = require('./routes/home');
 
 // Emplacement des fichiers statiques (css, js, images)
 app.use(express.static(path.join(__dirname, '..', '/public')));
@@ -79,8 +102,11 @@ var GameServer = require('./core/gameServer');
 var gameServer = new GameServer(io);
 // var gameServer = require('./core/gameServer');
 
+
+
 // Detection de l'évenement de connection d'un joueur
 io.sockets.on('connection', function (socket) {
+  debug('socket');
   socket.broadcast.emit('nouveau joueur');
 
   console.log('------------------------------------');
@@ -88,13 +114,15 @@ io.sockets.on('connection', function (socket) {
   console.log('------------------------------------');
   // Envoi du nombre de joueurs connectés
   io.sockets.emit('compteur joueurs', socket.server.eio.clientsCount);
-
+  debug('Joueur ' + socket.id + ' connecté...')
 
   // Detection de l'évenement de déconnection d'un joueur
   socket.on('disconnect', function () {
     console.log('------------------------------------');
     console.log('Joueur ' + socket.id + ' déconnecté...');
     console.log('------------------------------------');
+
+
 
     // Envoi du nombre de joueurs connectés
     io.sockets.emit('compteur joueurs', socket.server.eio.clientsCount);
@@ -148,7 +176,8 @@ io.sockets.on('connection', function (socket) {
     // accueil.dispatch(roomManagt);
   });
 
-  io.to(socket.id).emit('jeu', {
+  // io.to(socket.id).emit('jeu', {
+  io.sockets.emit('jeu', {
     'yourScore': 1,
     'hisScore': 3,
     'tempsRestant': '3:15',

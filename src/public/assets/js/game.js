@@ -2,7 +2,7 @@
  * @Author: Thierry Aronoff
  * @Date: 2017-04-01 17:55:15
  * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-04-02 17:38:31
+ * @Last Modified time: 2017-04-04 22:59:27
  */
 'use strict';
 
@@ -14,13 +14,12 @@
 /**
  *  Moteur du jeu
  * @class
- * @param {object} socket - Socket.io
  */
 var Game = (function () {
   /**
    * Partie principale du jeu
    * @constructor
-   * @param {object} socket - Socket du joueur
+   * @param  socket - Socket du joueur
    */
   function Game(socket) {
     this.game = {
@@ -39,9 +38,7 @@ var Game = (function () {
   };
 
   /**
-   *  Méthode d'affichage
-   * @method
-   * @param {number} score - Score du joueur
+   *  Méthode d'affichage   
    */
   Game.prototype.render = function () {
     // Affichage des informations de jeu
@@ -60,12 +57,18 @@ var Game = (function () {
     $('#adv_answer').html('<p>' + this.adv_resp + '</p>');
   };
 
-  Game.prototype.majnfoJeu = function () {
+  /**
+   * Mise à jour des informations du jeu en cours   
+   */
+  Game.prototype.majInfoJeu = function (socket) {
     // Sauvegarde du context de this
-    /** @this Game */
+    /**
+     * Sauvegarde du context de this 
+     * @this Game 
+     */
     var self = this;
 
-    this.socket.on('jeu', function (data) {
+    socket.on('jeu', function (data) {
       self.game = {
         'manches': data.manches,
         'score': data.yourScore,
@@ -127,29 +130,30 @@ var Game = (function () {
    * Traite le résultat du jeu
    * @function
    */
-  Game.prototype.getResult = function () {
+  Game.prototype.getResult = function (socket) {
     // Retour
     // sauvegarde du contexte
     /** @ this Game */
     var self = this;
-    this.socket.on('resultat', function (data) {
+    socket.on('resultat', function (data) {
       self.me = data.joueur1;
       self.adv = data.joueur2;
       self.adv_resp = data.joueur2_answer;
 
-
+      console.log(socket)
       console.log('winner', data.winner);
     });
   };
 
   /**
-   * Fonction principlae du jeu
+   * Fonction principale du jeu
    * @function
    */
-  Game.prototype.main = function () {
-    this.render();
-    this.itemSelected();
-    this.getResult();
+  Game.prototype.main = function (socket) {
+    this.render(socket);
+    this.itemSelected(socket);
+    this.getResult(socket);
+    this.majInfoJeu(socket);
   };
 
   return Game;
