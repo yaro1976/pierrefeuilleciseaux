@@ -1,6 +1,6 @@
 /*
- * @Author: Thierry ARONOFF 
- * @Date: 2017-04-05 12:38:14 
+ * @Author: Thierry ARONOFF
+ * @Date: 2017-04-05 12:38:14
  * @Last Modified by: Thierry ARONOFF
  * @Last Modified time: 2017-04-05 13:12:35
  */
@@ -23,7 +23,7 @@ var db = require('./database');
 
 /**
  * Classe de gestion des échanges via socket.io
- * @param {*} http 
+ * @param {*} http
  */
 
 var socketSystem = function (http) {
@@ -45,8 +45,8 @@ var socketSystem = function (http) {
 };
 
 socketSystem.prototype.main = function () {
-// Sauvegarde le contexte
-var self = this;
+    // Sauvegarde le contexte
+    var self = this;
 
     // Detection de l'évenement de connection d'un joueur
     this.io.sockets.on('connection', function (socket) {
@@ -60,8 +60,8 @@ var self = this;
         self.io.sockets.emit('compteur joueurs', socket.server.eio.clientsCount);
         self.listClient[socket.id] = socket;
 
-        
-        
+
+
 
         // Detection de l'évenement de déconnection d'un joueur
         socket.on('disconnect', function () {
@@ -110,7 +110,7 @@ var self = this;
             self.listClient[socket.id] = socket;
 
             console.log(self.listClient)
-            // On salue le nouveau joueur            
+            // On salue le nouveau joueur
             // Transfert du nouveau joueur connecté à un salon
             self.io.to(socket.id).emit('connecte', {
                 'msg': 'Bienvenue',
@@ -137,6 +137,27 @@ var self = this;
         //
         self.gameServer.getReponse(socket);
     });
+
+    socketSystem.prototype.update = function () {
+        /**
+         * Sauvegarde du contexte
+         * @this socketSystem
+         */
+        var self = this;
+
+        setInterval(function () {
+            for (var i in self.listClient) {
+                self.listClient[i].emit('jeu', {
+                    'yourScore': 1,
+                    'hisScore': 3,
+                    'tempsRestant': '3:15',
+                    'tempsTotal': '4:00',
+                    'manches': 1,
+                });
+            };
+        }, 1000 / 25);
+
+    }
 }
 
 module.exports = socketSystem;
