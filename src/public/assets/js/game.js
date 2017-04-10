@@ -2,7 +2,7 @@
  * @Author: Thierry Aronoff
  * @Date: 2017-04-01 17:55:15
  * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-04-05 22:34:28
+ * @Last Modified time: 2017-04-10 21:18:07
  */
 'use strict';
 
@@ -70,14 +70,13 @@ var Game = (function () {
     var self = this;
 
     socket.on('jeu', function (data) {
-      // console.log(data);
       self.game.manches = data.manches;
       self.game.score = data.yourScore;
       self.game.advScore = data.hisScore;
       self.game.timeElapse = data.tempsRestant;
-      self.game.totalTime = data.tempsTotal;
+      self.game.totalTime = data.tempsTotal;      
       
-      console.log(self.game);
+      // console.log(self.game);
       self.render();
     });
   };

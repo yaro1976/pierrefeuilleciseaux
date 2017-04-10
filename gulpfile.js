@@ -27,8 +27,14 @@ gulp.task('js', function () {
 
 gulp.task('watch', function () {
     gulp.watch('./src/public/**/*.scss', ['sass']);
+});
+gulp.task('watch', function () {
     gulp.watch('./src/public/**/*.js', ['js']);
+});
+gulp.task('watch', function () {
     gulp.watch('./src/**/*.js', ['js']);
+});
+gulp.task('watch', function () {
     gulp.watch('**/src/**/*.js', ['jsdoc']);
 });
 
@@ -59,5 +65,5 @@ gulp.task('jsdoc', function (cb) {
         .pipe(jsdoc(config, cb));
 });
 
-// gulp.task('default', ['sass', 'js', 'jsdoc', 'develop', 'watch']);
-gulp.task('default', ['sass', 'js', 'jsdoc', 'watch']);
+gulp.task('default', ['sass', 'js', 'jsdoc', 'develop', 'watch']);
+// gulp.task('default', ['sass', 'js', 'jsdoc', 'watch']);
