@@ -124,14 +124,14 @@ socketSystem.prototype.main = function () {
             // accueil.dispatch(roomManagt);
         });
 
-        // this.io.to(socket.id).emit('jeu', {
-        self.io.sockets.emit('jeu', {
-            'yourScore': 1,
-            'hisScore': 3,
-            'tempsRestant': '3:15',
-            'tempsTotal': '4:00',
-            'manches': 1,
-        });
+        // // this.io.to(socket.id).emit('jeu', {
+        // self.io.sockets.emit('jeu', {
+        //     'yourScore': 1,
+        //     'hisScore': 3,
+        //     'tempsRestant': '3:15',
+        //     'tempsTotal': '4:00',
+        //     'manches': 1,
+        // });
 
         //
         self.gameServer.getReponse(socket);
@@ -144,18 +144,30 @@ socketSystem.prototype.main = function () {
          */
         var self = this;
 
+        var m = 0;
+        var t = 0;
         setInterval(function () {
-            console.log('update');
+            // console.log('update');
             for (var i in self.listClient) {
-                console.log(self.listClient[i].username);
+                // console.log(self.listClient[i].username);
                 
                 self.listClient[i].emit('jeu', {
                     'yourScore': 1,
                     'hisScore': 3,
                     'tempsRestant': '3:15',
                     'tempsTotal': '4:00',
-                    'manches': 1,
+                    'manches': m,
                 });
+                
+                t += 1;
+                
+                if (t === 1000){
+                    m += 1;
+                    t = 0;
+                }
+                
+                
+                if (m > 10){ m = 0; }
             };
         }, 100 / 25);
     }

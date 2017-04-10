@@ -36,7 +36,7 @@ var app = (function (login, Game, chat, $) {
     var game = new Game(socket);
     game.main(socket);
 
-    // setInterval(game.render(), 1000 / 25);
+    // setInterval(game.main(socket), 1000 / 25);
 
 
     var gameZone = $('.game');

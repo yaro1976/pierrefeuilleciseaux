@@ -41,6 +41,7 @@ var Game = (function () {
    *  Méthode d'affichage   
    */
   Game.prototype.render = function () {
+    
     // Affichage des informations de jeu
     var information = '';
     information += '<p>Manches restantes ' + this.game.manches + '';
@@ -69,13 +70,15 @@ var Game = (function () {
     var self = this;
 
     socket.on('jeu', function (data) {
-      self.game = {
-        'manches': data.manches,
-        'score': data.yourScore,
-        'advScore': data.hisScore,
-        'timeElapse': data.tempsRestant,
-        'totalTime': data.tempsTotal,
-      };
+      // console.log(data);
+      self.game.manches = data.manches;
+      self.game.score = data.yourScore;
+      self.game.advScore = data.hisScore;
+      self.game.timeElapse = data.tempsRestant;
+      self.game.totalTime = data.tempsTotal;
+      
+      console.log(self.game);
+      self.render();
     });
   };
 
