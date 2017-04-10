@@ -2,7 +2,7 @@
  * @Author: Thierry Aronoff
  * @Date: 2017-03-28 21:16:34
  * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-04-04 22:32:18
+ * @Last Modified time: 2017-04-09 22:11:09
  */
 'use strict';
 
@@ -58,7 +58,7 @@ var shifoumiClass = (function () {
 		var nbReponse = 0;
 		
 		socket.on('item selected', function (data) {
-			console.log(socket.username, data);
+			// console.log(socket.username, data);
 			self.answer[socket.id] = {
 				'id': socket,
 				'answer': data,
