@@ -66,7 +66,14 @@ if (app.get('env') === 'development') {
 var index = require('./routes/home');
 
 // Emplacement des fichiers statiques (css, js, images)
-app.use(express.static(path.join(__dirname, '..', '/public')));
+if (app.get('env') === 'development') {
+    app.use('/',express.static(path.join(__dirname, '..', '/public')));
+} else {
+    // Active le cache du serveur pour les fichiers statiques
+    app.use('/',express.static(path.join(__dirname, '..', '/public'),{
+        maxAge: '1y',
+    }));
+}
 
 // Mise à jour des chemins des vues
 app.set('views', path.join(__dirname, '/views'));
