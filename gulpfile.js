@@ -40,15 +40,24 @@ gulp.task('watch', function () {
 
 gulp.task('develop', function () {
     console.log('Lancement du serveur Web');
-    liveload.listen();
+    liveload.listen({
+        basePath: __dirname + "/src/"
+    });
     nodemon({
         script: 'src/server/server.js',
-        ext: 'js handlebars hbs',
-        stdout: false,
+        ext: 'js html css',
+        verbose: true,
+        debugPort: 5858,
+        nodeArgs: ['--debug'],
+        watch: 'src/**/*',
+        env: {
+            'NODE_ENV': 'development'           
+        },
+        stdout: true,
     }).on('readable', function () {
         this.stdout.on('data', function (chunk) {
             if (/^Express started on/.test(chunk)) {
-                liveload.changed(__dirname);
+                liveload.changed(__dirname + "/src/");
             }
         });
         this.stdout.pipe(process.stdout);
