@@ -2,7 +2,7 @@
  * @Author: Thierry Aronoff
  * @Date: 2017-04-01 17:55:15
  * @Last Modified by: Thierry Aronoff
- * @Last Modified time: 2017-04-10 21:18:07
+ * @Last Modified time: 2017-04-11 22:57:53
  */
 'use strict';
 
@@ -144,8 +144,9 @@ var Game = (function () {
       self.adv = data.joueur2;
       self.adv_resp = data.joueur2_answer;
 
-      console.log(socket)
+      /** Réception du nom du vainqueur */      
       console.log('winner', data.winner);
+      self.game.winner = data.winner;
     });
   };
 
