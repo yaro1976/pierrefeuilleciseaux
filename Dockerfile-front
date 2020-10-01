@@ -1,0 +1,8 @@
+FROM nginx:latest
+
+WORKDIR /app
+
+copy ./src/public/* /usr/share/nginx/html/
+
+EXPOSE 80
+

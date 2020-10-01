@@ -1,0 +1,14 @@
+FROM node:latest
+
+WORKDIR /app
+
+COPY ./package*.json /app/
+RUN npm i
+
+COPY ./src/server /app
+EXPOSE 80
+ENV PORT 80
+
+VOLUME  ./config
+
+CMD ["node","/app/index.js"]

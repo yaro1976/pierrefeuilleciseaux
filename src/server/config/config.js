@@ -27,10 +27,10 @@
 module.exports = {
   'db': {
     'dbname': 'dbchifoumi',
-    'address': '127.0.0.1',
+    'address': 'db',
     'port': 27017,
-    'user': '',
-    'mdp': '',
+    'user': 'root',
+    'mdp': 'password',
   },
   'game': {
     'nbParties': 5,
