@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: ./Dockerfile-front
     ports:
-      - "8080:80"
+      - "1080:80"
     networks:
       - pfcnet
     links:
@@ -19,7 +19,7 @@ services:
       dockerfile: ./Dockerfile-server
     #    image: pfc_backend:latest
     ports:
-      - "18080:80"
+      - "2080:80"
     volumes:
       - ./server/config/config.js:/config/config.js
     networks:
