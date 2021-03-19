@@ -27,7 +27,7 @@
     "morgan": "^1.8.1",
     "path": "^0.12.7",
     "pug": "^3.0.2",
-    "socket.io": "^4.0.0"
+    "socket.io": "^2.4.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",
